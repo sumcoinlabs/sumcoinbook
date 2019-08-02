@@ -6,21 +6,21 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/conformal/btcrpcclient"
-	"github.com/conformal/btcutil"
-	"github.com/conformal/btcwire"
+	"github.com/conformal/sumrpcclient"
+	"github.com/conformal/sumutil"
+	"github.com/conformal/sumwire"
 )
 
 // This example demonstrates a connection to the bitcoin network
-// by using websockets via btcd, use of notifications and an rpc
+// by using websockets via sumd, use of notifications and an rpc
 // call to getblockcount.
 //
-// Install and run btcd:
-// 		$ go get github.com/conformal/btcd/...
-//		$ btcd -u rpcuser -P rpcpass
+// Install and run sumd:
+// 		$ go get github.com/conformal/sumd/...
+//		$ sumd -u rpcuser -P rpcpass
 //
-// Install btcrpcclient:
-// 		$ go get github.com/conformal/btcrpcclient
+// Install sumrpcclient:
+// 		$ go get github.com/conformal/sumrpcclient
 //
 // Run this example:
 // 		$ go run websocket-example.go
@@ -28,31 +28,31 @@ import (
 func main() {
 	// Only override the handlers for notifications you care about.
 	// Also note most of these handlers will only be called if you register
-	// for notifications. See the documentation of the btcrpcclient
+	// for notifications. See the documentation of the sumrpcclient
 	// NotificationHandlers type for more details about each handler.
-	ntfnHandlers := btcrpcclient.NotificationHandlers{
-		OnBlockConnected: func(hash *btcwire.ShaHash, height int32) {
+	ntfnHandlers := sumrpcclient.NotificationHandlers{
+		OnBlockConnected: func(hash *sumwire.ShaHash, height int32) {
 			log.Printf("Block connected: %v (%d)", hash, height)
 		},
-		OnBlockDisconnected: func(hash *btcwire.ShaHash, height int32) {
+		OnBlockDisconnected: func(hash *sumwire.ShaHash, height int32) {
 			log.Printf("Block disconnected: %v (%d)", hash, height)
 		},
 	}
 
-	// Connect to local btcd RPC server using websockets.
-	btcdHomeDir := btcutil.AppDataDir("btcd", false)
-	certs, err := ioutil.ReadFile(filepath.Join(btcdHomeDir, "rpc.cert"))
+	// Connect to local sumd RPC server using websockets.
+	sumdHomeDir := sumutil.AppDataDir("sumd", false)
+	certs, err := ioutil.ReadFile(filepath.Join(sumdHomeDir, "rpc.cert"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	connCfg := &btcrpcclient.ConnConfig{
+	connCfg := &sumrpcclient.ConnConfig{
 		Host:         "localhost:8334",
 		Endpoint:     "ws",
 		User:         "rpcuser",
 		Pass:         "rpcpass",
 		Certificates: certs,
 	}
-	client, err := btcrpcclient.New(connCfg, &ntfnHandlers)
+	client, err := sumrpcclient.New(connCfg, &ntfnHandlers)
 	if err != nil {
 		log.Fatal(err)
 	}

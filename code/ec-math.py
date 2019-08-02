@@ -52,7 +52,7 @@ print("Secret: ", secret)
 point = secret * generator
 print("EC point:", point)
 
-print("BTC public key:", get_point_pubkey(point).encode("hex"))
+print("SUM public key:", get_point_pubkey(point).encode("hex"))
 
 # Given the point (x, y) we can create the object using:
 point1 = ecdsa.ellipticcurve.Point(curve, point.x(), point.y(), ec_order)

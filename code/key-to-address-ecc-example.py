@@ -39,8 +39,8 @@ hex_compressed_public_key = compressed_prefix + (bitcoin.encode(public_key_x, 16
 print("Compressed Public Key (hex) is:", hex_compressed_public_key)
 
 # Generate bitcoin address from public key
-print("Bitcoin Address (b58check) is:", bitcoin.pubkey_to_address(public_key))
+print("Sumcoin Address (b58check) is:", bitcoin.pubkey_to_address(public_key))
 
 # Generate compressed bitcoin address from compressed public key
-print("Compressed Bitcoin Address (b58check) is:",
+print("Compressed Sumcoin Address (b58check) is:",
       bitcoin.pubkey_to_address(hex_compressed_public_key))

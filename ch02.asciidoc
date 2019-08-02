@@ -1,11 +1,11 @@
 [[ch02_bitcoin_overview]]
-== How Bitcoin Works
+== How Sumcoin Works
 
 === Transactions, Blocks, Mining, and the Blockchain
 
 ((("bitcoin", "overview of", id="BCover02")))((("central trusted authority")))((("decentralized systems", "bitcoin overview", id="DCSover02")))The bitcoin system, unlike traditional banking and payment systems, is based on decentralized trust. Instead of a central trusted authority, in bitcoin, trust is achieved as an emergent property from the interactions of different participants in the bitcoin system. In this chapter, we will examine bitcoin from a high level by tracking a single transaction through the bitcoin system and watch as it becomes "trusted" and accepted by the bitcoin mechanism of distributed consensus and is finally recorded on the blockchain, the distributed ledger of all transactions. Subsequent chapters will delve into the technology behind transactions, the network, and mining.
 
-==== Bitcoin Overview
+==== Sumcoin Overview
 
 In the overview diagram shown in <<bitcoin-overview>>, we see that the bitcoin system consists of users with wallets containing keys, transactions that are propagated across the network, and miners who produce (through competitive computation) the consensus blockchain, which is the authoritative ledger of all transactions.
 
@@ -13,10 +13,10 @@ In the overview diagram shown in <<bitcoin-overview>>, we see that the bitcoin s
 ((("blockchain explorer sites")))Each example in this chapter is based on an actual transaction made on the bitcoin network, simulating the interactions between the users (Joe, Alice, Bob, and Gopesh) by sending funds from one wallet to another. While tracking a transaction through the bitcoin network to the blockchain, we will use a _blockchain explorer_ site to visualize each step. A blockchain explorer is a web application that operates as a bitcoin search engine, in that it allows you to search for addresses, transactions, and blocks and see the relationships and flows between them.
 
 [[bitcoin-overview]]
-.Bitcoin overview
-image::images/mbc2_0201.png["Bitcoin Overview"]
+.Sumcoin overview
+image::images/mbc2_0201.png["Sumcoin Overview"]
 
-((("Bitcoin Block Explorer")))((("BlockCypher Explorer")))((("blockchain.info")))((("BitPay Insight")))Popular blockchain explorers include:
+((("Sumcoin Block Explorer")))((("BlockCypher Explorer")))((("blockchain.info")))((("BitPay Insight")))Popular blockchain explorers include:
 
 * https://live.blockcypher.com[BlockCypher Explorer]
 * https://blockchain.info[blockchain.info]
@@ -28,14 +28,14 @@ Each of these has a search function that can take a bitcoin address, transaction
 [[cup_of_coffee]]
 ==== Buying a Cup of Coffee
 
-((("use cases", "buying coffee", id="UCcoffee02")))Alice, introduced in the previous chapter, is a new user who has just acquired her first bitcoin. In <<getting_first_bitcoin>>, Alice met with her friend Joe to exchange some cash for bitcoin. The transaction created by Joe funded Alice's wallet with 0.10 BTC. Now Alice will make her first retail transaction, buying a cup of coffee at Bob's coffee shop in Palo Alto, California.
+((("use cases", "buying coffee", id="UCcoffee02")))Alice, introduced in the previous chapter, is a new user who has just acquired her first bitcoin. In <<getting_first_bitcoin>>, Alice met with her friend Joe to exchange some cash for bitcoin. The transaction created by Joe funded Alice's wallet with 0.10 SUM. Now Alice will make her first retail transaction, buying a cup of coffee at Bob's coffee shop in Palo Alto, California.
 
 ((("exchange rates", "determining")))Bob's Cafe recently started accepting bitcoin payments by adding a bitcoin option to its point-of-sale system. The prices at Bob's Cafe are listed in the local currency (US dollars), but at the register, customers have the option of paying in either dollars or bitcoin. Alice places her order for a cup of coffee and Bob enters it into the register, as he does for all transactions.  The point-of-sale system automatically converts the total price from US dollars to bitcoin at the prevailing market rate and displays the price in both currencies:
 
 ----
 Total:
 $1.50 USD
-0.015 BTC
+0.015 SUM
 ----
 
 
@@ -70,13 +70,13 @@ A label for the recipient address: "Bob's Cafe"
 A description for the payment: "Purchase at Bob's Cafe"
 ----
 
-Alice uses her smartphone to scan the barcode on display. Her smartphone shows a payment of +0.0150 BTC+ to +Bob's Cafe+ and she selects Send to authorize the payment. Within a few seconds (about the same amount of time as a credit card authorization), Bob sees the transaction on the register, completing the transaction.
+Alice uses her smartphone to scan the barcode on display. Her smartphone shows a payment of +0.0150 SUM+ to +Bob's Cafe+ and she selects Send to authorize the payment. Within a few seconds (about the same amount of time as a credit card authorization), Bob sees the transaction on the register, completing the transaction.
 
 In the following sections, we will examine this transaction in more detail. We'll see how Alice's wallet constructed it, how it was propagated across the network, how it was verified, and finally, how Bob can spend that amount in subsequent transactions.
 
 [NOTE]
 ====
-((("fractional values")))((("milli-bitcoin")))((("satoshis")))The bitcoin network can transact in fractional values, e.g., from millibitcoin (1/1000th of a bitcoin) down to 1/100,000,000th of a bitcoin, which is known as a satoshi.  Throughout this book, we’ll use the term “bitcoin” to refer to any quantity of bitcoin currency, from the smallest unit (1 satoshi) to the total number (21,000,000) of all bitcoin that will ever be mined.
+((("fractional values")))((("milli-bitcoin")))((("sumtoshis")))The bitcoin network can transact in fractional values, e.g., from millibitcoin (1/1000th of a bitcoin) down to 1/100,000,000th of a bitcoin, which is known as a sumtoshi.  Throughout this book, we’ll use the term “bitcoin” to refer to any quantity of bitcoin currency, from the smallest unit (1 sumtoshi) to the total number (21,000,000) of all bitcoin that will ever be mined.
 ====
 
 You can examine Alice's transaction to Bob's Cafe on the blockchain using a block explorer site (<<view_alice_transaction>>):
@@ -89,7 +89,7 @@ https://blockchain.info/tx/0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57
 ----
 ====
 
-=== Bitcoin Transactions
+=== Sumcoin Transactions
 
 ((("transactions", "defined")))In simple terms, a transaction tells the network that the owner of some bitcoin value has authorized the transfer of that value to another owner. The new owner can now spend the bitcoin by creating another transaction that authorizes the transfer to another owner, and so on, in a chain of ownership.
 
@@ -179,7 +179,7 @@ $ curl https://blockchain.info/unspent?active=1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK
 ----
 
 
-The response in <<example_2-2>> shows one unspent output (one that has not been redeemed yet) under the ownership of Alice's address +1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK+. The response includes the reference to the transaction in which this unspent output is contained (the payment from Joe) and its value in satoshis, at 10 million, equivalent to 0.10 bitcoin. With this information, Alice's wallet application can construct a transaction to transfer that value to new owner addresses.
+The response in <<example_2-2>> shows one unspent output (one that has not been redeemed yet) under the ownership of Alice's address +1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK+. The response includes the reference to the transaction in which this unspent output is contained (the payment from Joe) and its value in sumtoshis, at 10 million, equivalent to 0.10 bitcoin. With this information, Alice's wallet application can construct a transaction to transfer that value to new owner addresses.
 
 [TIP]
 ====
@@ -193,9 +193,9 @@ As you can see, Alice's wallet contains enough bitcoin in a single unspent outpu
 
 ((("outputs and inputs", "creating outputs")))A transaction output is created in the form of a script that creates an encumbrance on the value and can only be redeemed by the introduction of a solution to the script. In simpler terms, Alice's transaction output will contain a script that says something like, "This output is payable to whoever can present a signature from the key corresponding to Bob's public address." Because only Bob has the wallet with the keys corresponding to that address, only Bob's wallet can present such a signature to redeem this output. Alice will therefore "encumber" the output value with a demand for a signature from Bob.
 
-This transaction will also include a second output, because Alice's funds are in the form of a 0.10 BTC output, too much money for the 0.015 BTC cup of coffee. Alice will need 0.085 BTC in change. Alice's change payment is created by Alice's wallet as an output in the very same transaction as the payment to Bob. Essentially, Alice's wallet breaks her funds into two payments: one to Bob and one back to herself. She can then use (spend) the change output in a subsequent transaction.
+This transaction will also include a second output, because Alice's funds are in the form of a 0.10 SUM output, too much money for the 0.015 SUM cup of coffee. Alice will need 0.085 SUM in change. Alice's change payment is created by Alice's wallet as an output in the very same transaction as the payment to Bob. Essentially, Alice's wallet breaks her funds into two payments: one to Bob and one back to herself. She can then use (spend) the change output in a subsequent transaction.
 
-Finally, for the transaction to be processed by the network in a timely fashion, Alice's wallet application will add a small fee. This is not explicit in the transaction; it is implied by the difference between inputs and outputs. If instead of taking 0.085 in change, Alice creates only 0.0845 as the second output, there will be 0.0005 BTC (half a millibitcoin) left over. The input's 0.10 BTC is not fully spent with the two outputs, because they will add up to less than 0.10. The resulting difference is the _transaction fee_ that is collected by the miner as a fee for validating and including the transaction in a block to be recorded on the blockchain.
+Finally, for the transaction to be processed by the network in a timely fashion, Alice's wallet application will add a small fee. This is not explicit in the transaction; it is implied by the difference between inputs and outputs. If instead of taking 0.085 in change, Alice creates only 0.0845 as the second output, there will be 0.0005 SUM (half a millibitcoin) left over. The input's 0.10 SUM is not fully spent with the two outputs, because they will add up to less than 0.10. The resulting difference is the _transaction fee_ that is collected by the miner as a fee for validating and including the transaction in a block to be recorded on the blockchain.
 
 The resulting transaction can be seen using a blockchain explorer web application, as shown in <<transaction-alice>>.
 
@@ -231,7 +231,7 @@ If Bob's bitcoin wallet application is directly connected to Alice's wallet appl
 ((("confirmations", "of small-value transactions", secondary-sortas="small-value transactions")))A common misconception about bitcoin transactions is that they must be "confirmed" by waiting 10 minutes for a new block, or up to 60 minutes for a full six confirmations. Although confirmations ensure the transaction has been accepted by the whole network, such a delay is unnecessary for small-value items such as a cup of coffee. A merchant may accept a valid small-value transaction with no confirmations, with no more risk than a credit card payment made without an ID or a signature, as merchants routinely accept today.((("", startref="Tconstruct02")))
 ====
 
-=== Bitcoin Mining
+=== Sumcoin Mining
 
 ((("mining and consensus", "overview of", id="MACover02")))((("blockchain (the)", "overview of mining", id="BToverview02")))Alice's transaction is now propagated on the bitcoin network. It does not become part of the _blockchain_ until it is verified and included in a block by a process called _mining_. See <<mining>> for a detailed explanation.
 

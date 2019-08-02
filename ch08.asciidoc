@@ -1,11 +1,11 @@
 [[bitcoin_network_ch08]]
-== The Bitcoin Network
+== The Sumcoin Network
 
 === Peer-to-Peer Network Architecture
 
-((("bitcoin network", "peer-to-peer architecture")))((("peer-to-peer (P2P)")))Bitcoin is structured as a peer-to-peer network architecture on top of the internet. The term peer-to-peer, or P2P, means that the computers that participate in the network are peers to each other, that they are all equal, that there are no "special" nodes, and that all nodes share the burden of providing network services. The network nodes interconnect in a mesh network with a "flat" topology. There is no server, no centralized service, and no hierarchy within the network. Nodes in a P2P network both provide and consume services at the same time with reciprocity acting as the incentive for participation. P2P networks are inherently resilient, decentralized, and open. A preeminent example of a P2P network architecture was the early internet itself, where nodes on the IP network were equal. Today's internet architecture is more hierarchical, but the Internet Protocol still retains its flat-topology essence. Beyond bitcoin, the largest and most successful application of P2P technologies is file sharing, with Napster as the pioneer and BitTorrent as the most recent evolution of the architecture.
+((("bitcoin network", "peer-to-peer architecture")))((("peer-to-peer (P2P)")))Sumcoin is structured as a peer-to-peer network architecture on top of the internet. The term peer-to-peer, or P2P, means that the computers that participate in the network are peers to each other, that they are all equal, that there are no "special" nodes, and that all nodes share the burden of providing network services. The network nodes interconnect in a mesh network with a "flat" topology. There is no server, no centralized service, and no hierarchy within the network. Nodes in a P2P network both provide and consume services at the same time with reciprocity acting as the incentive for participation. P2P networks are inherently resilient, decentralized, and open. A preeminent example of a P2P network architecture was the early internet itself, where nodes on the IP network were equal. Today's internet architecture is more hierarchical, but the Internet Protocol still retains its flat-topology essence. Beyond bitcoin, the largest and most successful application of P2P technologies is file sharing, with Napster as the pioneer and BitTorrent as the most recent evolution of the architecture.
 
-Bitcoin's P2P network architecture is much more than a topology choice. Bitcoin is a P2P digital cash system by design, and the network architecture is both a reflection and a foundation of that core characteristic. Decentralization of control is a core design principle that can only be achieved and maintained by a flat, decentralized P2P consensus network.
+Sumcoin's P2P network architecture is much more than a topology choice. Sumcoin is a P2P digital cash system by design, and the network architecture is both a reflection and a foundation of that core characteristic. Decentralization of control is a core design principle that can only be achieved and maintained by a flat, decentralized P2P consensus network.
 
 ((("bitcoin network", "defined")))The term "bitcoin network" refers to the collection of nodes running the bitcoin P2P protocol. In addition to the bitcoin P2P protocol, there are other protocols such as Stratum that are used for mining and lightweight or mobile wallets. These additional protocols are provided by gateway routing servers that access the bitcoin network using the bitcoin P2P protocol and then extend that network to nodes running other protocols. For example, Stratum servers connect Stratum mining nodes via the Stratum protocol to the main bitcoin network and bridge the Stratum protocol to the bitcoin P2P protocol. We use the term "extended bitcoin network" to refer to the overall network that includes the bitcoin P2P protocol, pool-mining protocols, the Stratum protocol, and any other related protocols connecting the components of the bitcoin system.
 
@@ -30,9 +30,9 @@ In addition to the main node types on the bitcoin P2P protocol, there are server
 
 <<node_type_ledgend>> shows the most common node types on the extended bitcoin network.
 
-=== The Extended Bitcoin Network
+=== The Extended Sumcoin Network
 
-((("", startref="BNnode08")))((("", startref="BNtype08")))((("bitcoin network", "extended network activities")))The main bitcoin network, running the bitcoin P2P protocol, consists of between 5,000 and 8,000 listening nodes running various versions of the bitcoin reference client (Bitcoin Core) and a few hundred nodes running various other implementations of the bitcoin P2P protocol, such as Bitcoin Classic, Bitcoin Unlimited, BitcoinJ, Libbitcoin, btcd, and bcoin. A small percentage of the nodes on the bitcoin P2P network are also mining nodes, competing in the mining process, validating transactions, and creating new blocks. Various large companies interface with the bitcoin network by running full-node clients based on the Bitcoin Core client, with full copies of the blockchain and a network node, but without mining or wallet functions. These nodes act as network edge routers, allowing various other services (exchanges, wallets, block explorers, merchant payment processing) to be built on top.
+((("", startref="BNnode08")))((("", startref="BNtype08")))((("bitcoin network", "extended network activities")))The main bitcoin network, running the bitcoin P2P protocol, consists of between 5,000 and 8,000 listening nodes running various versions of the bitcoin reference client (Sumcoin Core) and a few hundred nodes running various other implementations of the bitcoin P2P protocol, such as Sumcoin Classic, Sumcoin Unlimited, SumcoinJ, Libbitcoin, sumd, and bcoin. A small percentage of the nodes on the bitcoin P2P network are also mining nodes, competing in the mining process, validating transactions, and creating new blocks. Various large companies interface with the bitcoin network by running full-node clients based on the Sumcoin Core client, with full copies of the blockchain and a network node, but without mining or wallet functions. These nodes act as network edge routers, allowing various other services (exchanges, wallets, block explorers, merchant payment processing) to be built on top.
 
 The extended bitcoin network includes the network running the bitcoin P2P protocol, described earlier, as well as nodes running specialized protocols. Attached to the main bitcoin P2P network are a number of pool servers and protocol gateways that connect nodes running other protocols. These other protocol nodes are mostly pool mining nodes (see <<mining>>) and lightweight wallet clients, which do not carry a full copy of the blockchain.
 
@@ -40,21 +40,21 @@ The extended bitcoin network includes the network running the bitcoin P2P protoc
 
 [[node_type_ledgend]]
 .Different types of nodes on the extended bitcoin network
-image::images/mbc2_0802.png["BitcoinNodeTypes"]
+image::images/mbc2_0802.png["SumcoinNodeTypes"]
 
 [[bitcoin_network]]
 .The extended bitcoin network showing various node types, gateways, and protocols
-image::images/mbc2_0803.png["BitcoinNetwork"]
+image::images/mbc2_0803.png["SumcoinNetwork"]
 
-=== Bitcoin Relay Networks
+=== Sumcoin Relay Networks
 
-((("bitcoin network", "Bitcoin Relay Networks")))((("relay networks")))While the bitcoin P2P network serves the general needs of a broad variety of node types, it exhibits too high network latency for the specialized needs of bitcoin mining nodes.
+((("bitcoin network", "Sumcoin Relay Networks")))((("relay networks")))While the bitcoin P2P network serves the general needs of a broad variety of node types, it exhibits too high network latency for the specialized needs of bitcoin mining nodes.
 
-((("propagation", "relay networks and")))Bitcoin miners are engaged in a time-sensitive competition to solve the Proof-of-Work problem and extend the blockchain (see <<mining>>). While participating in this competition, bitcoin miners must minimize the time between the propagation of a winning block and the beginning of the next round of competition. In mining, network latency is directly related to profit margins.
+((("propagation", "relay networks and")))Sumcoin miners are engaged in a time-sensitive competition to solve the Proof-of-Work problem and extend the blockchain (see <<mining>>). While participating in this competition, bitcoin miners must minimize the time between the propagation of a winning block and the beginning of the next round of competition. In mining, network latency is directly related to profit margins.
 
-A _Bitcoin Relay Network_ is a network that attempts to minimize the latency in the transmission of blocks between miners. The original http://www.bitcoinrelaynetwork.org[Bitcoin Relay Network] was created by core developer Matt Corallo in 2015 to enable fast synchronization of blocks between miners with very low latency. The network consisted of several specialized nodes hosted on the Amazon Web Services infrastructure around the world and served to connect the majority of miners and mining pools.
+A _Sumcoin Relay Network_ is a network that attempts to minimize the latency in the transmission of blocks between miners. The original http://www.bitcoinrelaynetwork.org[Sumcoin Relay Network] was created by core developer Matt Corallo in 2015 to enable fast synchronization of blocks between miners with very low latency. The network consisted of several specialized nodes hosted on the Amazon Web Services infrastructure around the world and served to connect the majority of miners and mining pools.
 
-((("Fast Internet Bitcoin Relay Engine (FIBRE)")))((("Compact Block optimization")))The original Bitcoin Relay Network was replaced in 2016 with the introduction of the _Fast Internet Bitcoin Relay Engine_ or http://bitcoinfibre.org[_FIBRE_], also created by core developer Matt Corallo. FIBRE is a UDP-based relay network that relays blocks within a network of nodes. FIBRE implements _compact block_ optimization to further reduce the amount of data transmitted and the network latency.
+((("Fast Internet Sumcoin Relay Engine (FIBRE)")))((("Compact Block optimization")))The original Sumcoin Relay Network was replaced in 2016 with the introduction of the _Fast Internet Sumcoin Relay Engine_ or http://bitcoinfibre.org[_FIBRE_], also created by core developer Matt Corallo. FIBRE is a UDP-based relay network that relays blocks within a network of nodes. FIBRE implements _compact block_ optimization to further reduce the amount of data transmitted and the network latency.
 
 ((("Falcon Relay Network")))Another relay network (still in the proposal phase) is http://www.falcon-net.org/about[_Falcon_], based on research at Cornell University. Falcon uses "cut-through-routing" instead of "store-and-forward" to reduce latency by propagating parts of blocks as they are received rather than waiting until a complete block is received.
 
@@ -78,7 +78,7 @@ To connect to a known peer, nodes establish a TCP connection, usually to port 83
 
 The +version+ message is always the first message sent by any peer to another peer. The local peer receiving a +version+ message will examine the remote peer's reported +nVersion+ and decide if the remote peer is compatible. If the remote peer is compatible, the local peer will acknowledge the +version+ message and establish a connection by sending a +verack+.
 
-How does a new node find peers? The first method is to query DNS using a number of "DNS seeds," which are DNS servers that provide a list of IP addresses of bitcoin nodes. Some of those DNS seeds provide a static list of IP addresses of stable bitcoin listening nodes. Some of the DNS seeds are custom implementations of BIND (Berkeley Internet Name Daemon) that return a random subset from a list of bitcoin node addresses collected by a crawler or a long-running bitcoin node.  The Bitcoin Core client contains the names of five different DNS seeds. The diversity of ownership and diversity of implementation of the different DNS seeds offers a high level of reliability for the initial bootstrapping process. In the Bitcoin Core client, the option to use the DNS seeds is controlled by the option switch +-dnsseed+ (set to 1 by default, to use the DNS seed).
+How does a new node find peers? The first method is to query DNS using a number of "DNS seeds," which are DNS servers that provide a list of IP addresses of bitcoin nodes. Some of those DNS seeds provide a static list of IP addresses of stable bitcoin listening nodes. Some of the DNS seeds are custom implementations of BIND (Berkeley Internet Name Daemon) that return a random subset from a list of bitcoin node addresses collected by a crawler or a long-running bitcoin node.  The Sumcoin Core client contains the names of five different DNS seeds. The diversity of ownership and diversity of implementation of the different DNS seeds offers a high level of reliability for the initial bootstrapping process. In the Sumcoin Core client, the option to use the DNS seeds is controlled by the option switch +-dnsseed+ (set to 1 by default, to use the DNS seed).
 
 Alternatively, a bootstrapping node that knows nothing of the network must be given the IP address of at least one bitcoin node, after which it can establish connections through further introductions. The command-line argument +-seednode+ can be used to connect to one node just for introductions using it as a seed. After the initial seed node is used to form introductions, the client will disconnect from it and use the newly discovered peers.
 
@@ -95,7 +95,7 @@ image::images/mbc2_0805.png["AddressPropagation"]
 
 A node must connect to a few different peers in order to establish diverse paths into the bitcoin network. Paths are not reliable—nodes come and go—and so the node must continue to discover new nodes as it loses old connections as well as assist other nodes when they bootstrap. Only one connection is needed to bootstrap, because the first node can offer introductions to its peer nodes and those peers can offer further introductions. It's also unnecessary and wasteful of network resources to connect to more than a handful of nodes. After bootstrapping, a node will remember its most recent successful peer connections, so that if it is rebooted it can quickly reestablish connections with its former peer network. If none of the former peers respond to its connection request, the node can use the seed nodes to bootstrap again.
 
-On a node running the Bitcoin Core client, you can list the peer connections with the command +getpeerinfo+:
+On a node running the Sumcoin Core client, you can list the peer connections with the command +getpeerinfo+:
 
 [source,bash]
 ----
@@ -145,13 +145,13 @@ If there is no traffic on a connection, nodes will periodically send a message t
 
 === Full Nodes
 
-((("bitcoin network", "full nodes")))((("full-node clients")))((("blockchain (the)", "full blockchain nodes")))Full nodes are nodes that maintain a full blockchain with all transactions. More accurately, they probably should be called "full blockchain nodes." In the early years of bitcoin, all nodes were full nodes and currently the Bitcoin Core client is a full blockchain node. In the past two years, however, new forms of bitcoin clients have been introduced that do not maintain a full blockchain but run as lightweight clients. We'll examine these in more detail in the next section.
+((("bitcoin network", "full nodes")))((("full-node clients")))((("blockchain (the)", "full blockchain nodes")))Full nodes are nodes that maintain a full blockchain with all transactions. More accurately, they probably should be called "full blockchain nodes." In the early years of bitcoin, all nodes were full nodes and currently the Sumcoin Core client is a full blockchain node. In the past two years, however, new forms of bitcoin clients have been introduced that do not maintain a full blockchain but run as lightweight clients. We'll examine these in more detail in the next section.
 
 ((("blocks", "genesis block")))((("genesis block")))((("blockchain (the)", "genesis block")))Full blockchain nodes maintain a complete and up-to-date copy of the bitcoin blockchain with all the transactions, which they independently build and verify, starting with the very first block (genesis block) and building up to the latest known block in the network. A full blockchain node can independently and authoritatively verify any transaction without recourse or reliance on any other node or source of information. The full blockchain node relies on the network to receive updates about new blocks of transactions, which it then verifies and incorporates into its local copy of the blockchain.
 
 ((("bitcoin nodes", "full nodes")))Running a full blockchain node gives you the pure bitcoin experience: independent verification of all transactions without the need to rely on, or trust, any other systems. It's easy to tell if you're running a full node because it requires more than one hundred gigabytes of persistent storage (disk space) to store the full blockchain. If you need a lot of disk and it takes two to three days to sync to the network, you are running a full node. That is the price of complete independence and freedom from central authority.
 
-((("Satoshi client")))There are a few alternative implementations of full blockchain bitcoin clients, built using different programming languages and software architectures. However, the most common implementation is the reference client Bitcoin Core, also known as the Satoshi client. More than 75% of the nodes on the bitcoin network run various versions of Bitcoin Core. It is identified as "Satoshi" in the sub-version string sent in the +version+ message and shown by the command +getpeerinfo+ as we saw earlier; for example, +/Satoshi:0.8.6/+.
+((("Satoshi client")))There are a few alternative implementations of full blockchain bitcoin clients, built using different programming languages and software architectures. However, the most common implementation is the reference client Sumcoin Core, also known as the Satoshi client. More than 75% of the nodes on the bitcoin network run various versions of Sumcoin Core. It is identified as "Satoshi" in the sub-version string sent in the +version+ message and shown by the command +getpeerinfo+ as we saw earlier; for example, +/Satoshi:0.8.6/+.
 
 === Exchanging "Inventory"
 
@@ -297,23 +297,23 @@ As a way to increase the privacy and security of the bitcoin P2P network, there 
 
 ((("Tor network")))((("The Onion Routing network (Tor)")))Tor, which stands for _The Onion Routing network_, is a software project and network that offers encryption and encapsulation of data through randomized network paths that offer anonymity, untraceability and privacy.
 
-Bitcoin Core offers several configuration options that allow you to run a bitcoin node with its traffic transported over the Tor network. In addition, Bitcoin Core can also offer a Tor hidden service allowing other Tor nodes to connect to your node directly over Tor.
+Sumcoin Core offers several configuration options that allow you to run a bitcoin node with its traffic transported over the Tor network. In addition, Sumcoin Core can also offer a Tor hidden service allowing other Tor nodes to connect to your node directly over Tor.
 
-As of Bitcoin Core version 0.12, a node will offer a hidden Tor service automatically if it is able to connect to a local Tor service. If you have Tor installed and the Bitcoin Core process runs as a user with adequate permissions to access the Tor authentication cookie, it should work automatically. Use the +debug+ flag to turn on Bitcoin Core's debugging for the Tor service like this:
+As of Sumcoin Core version 0.12, a node will offer a hidden Tor service automatically if it is able to connect to a local Tor service. If you have Tor installed and the Sumcoin Core process runs as a user with adequate permissions to access the Tor authentication cookie, it should work automatically. Use the +debug+ flag to turn on Sumcoin Core's debugging for the Tor service like this:
 
 ----
 $ bitcoind --daemon --debug=tor
 ----
 
-You should see "tor: ADD_ONION successful" in the logs, indicating that Bitcoin Core has added a hidden service to the Tor network.
+You should see "tor: ADD_ONION successful" in the logs, indicating that Sumcoin Core has added a hidden service to the Tor network.
 
-You can find more instructions on running Bitcoin Core as a Tor hidden service in the Bitcoin Core documentation (_docs/tor.md_) and various online tutorials.
+You can find more instructions on running Sumcoin Core as a Tor hidden service in the Sumcoin Core documentation (_docs/tor.md_) and various online tutorials.
 
 ==== Peer-to-Peer Authentication and Encryption
 
-((("Peer-to-Peer authentication and encryption")))((("bitcoin improvement proposals", "Peer Authentication (BIP-150)")))((("bitcoin improvement proposals", "Peer-to-Peer Communication Encryption (BIP-151)")))Two Bitcoin Improvement Proposals, BIP-150 and BIP-151, add support for P2P authentication and encryption in the bitcoin P2P network.  These two BIPs define optional services that may be offered by compatible bitcoin nodes. BIP-151 enables negotiated encryption for all communications between two nodes that support BIP-151. BIP-150 offers optional peer authentication that allows nodes to authenticate each other's identity using ECDSA and private keys. BIP-150 requires that prior to authentication the two nodes have established encrypted communications as per BIP-151.
+((("Peer-to-Peer authentication and encryption")))((("bitcoin improvement proposals", "Peer Authentication (BIP-150)")))((("bitcoin improvement proposals", "Peer-to-Peer Communication Encryption (BIP-151)")))Two Sumcoin Improvement Proposals, BIP-150 and BIP-151, add support for P2P authentication and encryption in the bitcoin P2P network.  These two BIPs define optional services that may be offered by compatible bitcoin nodes. BIP-151 enables negotiated encryption for all communications between two nodes that support BIP-151. BIP-150 offers optional peer authentication that allows nodes to authenticate each other's identity using ECDSA and private keys. BIP-150 requires that prior to authentication the two nodes have established encrypted communications as per BIP-151.
 
-As of January 2017, BIP-150 and BIP-151 are not implemented in Bitcoin Core. However, the two proposals have been implemented by at least one alternative bitcoin client named bcoin.
+As of January 2017, BIP-150 and BIP-151 are not implemented in Sumcoin Core. However, the two proposals have been implemented by at least one alternative bitcoin client named bcoin.
 
 BIP-150 and BIP-151 allow users to run SPV clients that connect to a trusted full node, using encryption and authentication to protect the privacy of the SPV client.
 

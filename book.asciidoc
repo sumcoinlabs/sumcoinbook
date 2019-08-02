@@ -1,4 +1,4 @@
-= Mastering Bitcoin
+= Mastering Sumcoin
 
 include::preface.asciidoc[]
 

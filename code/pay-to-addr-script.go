@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/conformal/btcnet"
-	"github.com/conformal/btcscript"
-	"github.com/conformal/btcutil"
+	"github.com/conformal/sumnet"
+	"github.com/conformal/sumscript"
+	"github.com/conformal/sumutil"
 )
 
 // This example demonstrates creating a script which pays to a bitcoin address.
@@ -23,19 +23,19 @@ func main() {
 }
 
 func PayToAddrScript(addressStr string) {
-	// Parse the address to send the coins to into a btcutil.Address
+	// Parse the address to send the coins to into a sumutil.Address
 	// which is useful to ensure the accuracy of the address and determine
 	// the address type.  It is also required for the upcoming call to
 	// PayToAddrScript.
-	address, err := btcutil.DecodeAddress(addressStr, &btcnet.MainNetParams)
+	address, err := sumutil.DecodeAddress(addressStr, &sumnet.MainNetParams)
 	handle(err)
 
 	// Create a public key script that pays to the address.
-	script, err := btcscript.PayToAddrScript(address)
+	script, err := sumscript.PayToAddrScript(address)
 	handle(err)
 	fmt.Printf("Script Hex: %x\n", script)
 
-	disasm, err := btcscript.DisasmString(script)
+	disasm, err := sumscript.DisasmString(script)
 	handle(err)
 	fmt.Println("Script Disassembly:", disasm)
 }

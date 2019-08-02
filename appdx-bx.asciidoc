@@ -1,9 +1,9 @@
 [[appdx_bx]]
 [appendix]
 
-== Bitcoin Explorer (bx) Commands
+== Sumcoin Explorer (bx) Commands
 
-((("Bitcoin Explorer (bx) commands", id="BX18_1", range="startofrange")))Bitcoin Explorer (bx) is a command-line tool that offers a variety of commands for key management and transaction construction. It is part of the libbitcoin bitcoin library.
+((("Sumcoin Explorer (bx) commands", id="BX18_1", range="startofrange")))Sumcoin Explorer (bx) is a command-line tool that offers a variety of commands for key management and transaction construction. It is part of the libbitcoin bitcoin library.
 
 ----
 Usage: bx COMMAND [--help]
@@ -24,7 +24,7 @@ base64-decode
 base64-encode
 bitcoin160
 bitcoin256
-btc-to-satoshi
+sum-to-sumtoshi
 ec-add
 ec-add-secrets
 ec-multiply
@@ -56,7 +56,7 @@ message-validate
 mnemonic-decode
 mnemonic-encode
 ripemd160
-satoshi-to-btc
+sumtoshi-to-sum
 script-decode
 script-encode
 script-to-address
@@ -85,11 +85,11 @@ wrap-decode
 wrap-encode
 ----
 
-For more information, see the https://github.com/libbitcoin/libbitcoin-explorer[Bitcoin Explorer homepage] and https://github.com/libbitcoin/libbitcoin-explorer/wiki[Bitcoin Explorer user documentation].
+For more information, see the https://github.com/libbitcoin/libbitcoin-explorer[Sumcoin Explorer homepage] and https://github.com/libbitcoin/libbitcoin-explorer/wiki[Sumcoin Explorer user documentation].
 
 === Examples of bx Command Use
 
-Let's look at some examples of using Bitcoin Explorer commands to experiment with keys and addresses.
+Let's look at some examples of using Sumcoin Explorer commands to experiment with keys and addresses.
 
 Generate a random "seed" value using the +seed+ command, which uses the operating system's random number generator. Pass the seed to the +ec-new+ command to generate a new private key. We save the standard output into the file _private_key_:
 
@@ -114,7 +114,7 @@ $ bx ec-to-address < public_key
 17re1S4Q8ZHyCP8Kw7xQad1Lr6XUzWUnkG
 ----
 
-Keys generated in this manner produce a type-0 nondeterministic wallet. That means that each key is generated from an independent seed. Bitcoin Explorer commands can also generate keys deterministically, in accordance with BIP-32. In this case, a "master" key is created from a seed and then extended deterministically to produce a tree of subkeys, resulting in a type-2 deterministic wallet.
+Keys generated in this manner produce a type-0 nondeterministic wallet. That means that each key is generated from an independent seed. Sumcoin Explorer commands can also generate keys deterministically, in accordance with BIP-32. In this case, a "master" key is created from a seed and then extended deterministically to produce a tree of subkeys, resulting in a type-2 deterministic wallet.
 
 First, we use the +seed+ and +hd-new+ commands to generate a master key that will be used as the basis to derive a hierarchy of keys:
 

@@ -1,13 +1,13 @@
-== Chapter 1 - What is Bitcoin?
-* Updated Bitcoin history
+== Chapter 1 - What is Sumcoin?
+* Updated Sumcoin history
 * More user stories and updates
 * More examples of bitcoin uses and clients
 * Updated guide on how to get, use, spend bitcoin
 
-== Chapter 2 - How Bitcoin Works
+== Chapter 2 - How Sumcoin Works
 * Many small changes, updates and improvements
 
-== Chapter 3 - Bitcoin Core
+== Chapter 3 - Sumcoin Core
 * Improved and updated examples and code
 * Configuration options and examples
 * Running a bitcoin node

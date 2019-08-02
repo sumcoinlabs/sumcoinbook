@@ -14,7 +14,7 @@ int main()
     bc::wallet::ec_public public_key(secret);
     std::cout << "Public key: " << public_key.encoded() << std::endl;
 
-    // Create Bitcoin address.
+    // Create Sumcoin address.
     // Normally you can use:
     //    bc::wallet::payment_address payaddr =
     //        public_key.to_payment_address(
@@ -32,13 +32,13 @@ int main()
     //   [ hash:20    ]
     //   [ checksum:4 ]
     unencoded_address.reserve(25);
-    // Version byte, 0 is normal BTC address (P2PKH).
+    // Version byte, 0 is normal SUM address (P2PKH).
     unencoded_address.push_back(0);
     // Hash data
     bc::extend_data(unencoded_address, hash);
     // Checksum is computed by hashing data, and adding 4 bytes from hash.
     bc::append_checksum(unencoded_address);
-    // Finally we must encode the result in Bitcoin's base58 encoding.
+    // Finally we must encode the result in Sumcoin's base58 encoding.
     assert(unencoded_address.size() == 25);
     const std::string address = bc::encode_base58(unencoded_address);
 

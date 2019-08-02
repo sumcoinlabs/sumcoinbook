@@ -4,14 +4,14 @@
 == Bitcore
 
 
-((("Bitcore", id="bitcore16")))Bitcore is a suite of tools provided by BitPay. Its goal is to provide easy-to-use tools for Bitcoin developers. Almost all of Bitcore's code is written in JavaScript. There are some modules written specifically for NodeJS. Finally, the "node" module of Bitcore includes Bitcoin Core's C++ code. Please see https://bitcore.io for more information.
+((("Bitcore", id="bitcore16")))Bitcore is a suite of tools provided by BitPay. Its goal is to provide easy-to-use tools for Sumcoin developers. Almost all of Bitcore's code is written in JavaScript. There are some modules written specifically for NodeJS. Finally, the "node" module of Bitcore includes Sumcoin Core's C++ code. Please see https://bitcore.io for more information.
 
 === Bitcore's Feature List
 
-* Bitcoin full node (bitcore-node)
+* Sumcoin full node (bitcore-node)
 * Block explorer (insight)
 * Block, transaction, and wallet utilities (bitcore-lib)
-* Communicating directly with Bitcoin's P2P network (bitcore-p2p)
+* Communicating directly with Sumcoin's P2P network (bitcore-p2p)
 * Seed entropy mnemonic generation (bitcore-mnemonic)
 * Payment protocol (bitcore-payment-protocol)
 * Message verification and signing (bitcore-message)
@@ -19,7 +19,7 @@
 * Wallet service (bitcore-wallet-service)
 * Wallet client (bitcore-wallet-client)
 * Playground (bitcore-playground)
-* Integrating services directly with Bitcoin Core (bitcore-node)
+* Integrating services directly with Sumcoin Core (bitcore-node)
 
 === Bitcore Library Examples
 
@@ -61,7 +61,7 @@ Creating and signing a transaction from an UTXO:
   outputIndex: output indexi e.g. 0,
   address: addressOfUtxo,
   script: bitcore.Script.buildPublicKeyHashOut(addressOfUtxo).toString(),
-  satoshis: amount sent to the address
+  sumtoshis: amount sent to the address
 }
 > fee = 3000 //set appropriately for conditions on the network
 > tx = new bitcore.Transaction()
@@ -85,7 +85,7 @@ Replace the last transaction in the mempool (replace-by-fee):
 > rbfTx.serialize();
 ----
 
-Broadcasting a transaction to the Bitcoin network
+Broadcasting a transaction to the Sumcoin network
 (note: broadcast valid transactions only; refer to https://bitnodes.21.co/nodes[] for peer hosts):
 
 1. Copy the code below into a file called _broadcast.js_.

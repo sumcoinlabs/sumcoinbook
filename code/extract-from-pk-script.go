@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/conformal/btcnet"
-	"github.com/conformal/btcscript"
+	"github.com/conformal/sumnet"
+	"github.com/conformal/sumscript"
 )
 
 // go run extract-from-pk-script.go
@@ -29,7 +29,7 @@ func ExtractPkScriptAddrs(scriptHex string) {
 	handle(err)
 
 	// Extract and print details from the script.
-	scriptClass, addresses, reqSigs, err := btcscript.ExtractPkScriptAddrs(script, &btcnet.MainNetParams)
+	scriptClass, addresses, reqSigs, err := sumscript.ExtractPkScriptAddrs(script, &sumnet.MainNetParams)
 	handle(err)
 
 	fmt.Println("Script Class:", scriptClass)

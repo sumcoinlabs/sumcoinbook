@@ -7,7 +7,7 @@ In this chapter we will look at the features offered by the bitcoin blockchain, 
 
 === Introduction
 
-((("blockchain applications", "benefits of bitcoin system")))The bitcoin system was designed as a decentralized currency and payment system. However, most of its functionality is derived from much lower-level constructs that can be used for much broader applications. Bitcoin wasn't built with components such as accounts, users, balances, and payments. Instead, it uses a transactional scripting language with low-level cryptographic functions, as we saw in <<transactions>>. Just as the higher-level concepts of accounts, balances, and payments can be derived from these basic primitives, so can many other complex applications. Thus, the bitcoin blockchain can become an application platform offering trust services to applications, such as smart contracts, far surpassing the original purpose of digital currency and payments.
+((("blockchain applications", "benefits of bitcoin system")))The bitcoin system was designed as a decentralized currency and payment system. However, most of its functionality is derived from much lower-level constructs that can be used for much broader applications. Sumcoin wasn't built with components such as accounts, users, balances, and payments. Instead, it uses a transactional scripting language with low-level cryptographic functions, as we saw in <<transactions>>. Just as the higher-level concepts of accounts, balances, and payments can be derived from these basic primitives, so can many other complex applications. Thus, the bitcoin blockchain can become an application platform offering trust services to applications, such as smart contracts, far surpassing the original purpose of digital currency and payments.
 
 === Building Blocks (Primitives)
 
@@ -31,7 +31,7 @@ Nonexpiration:: A valid transaction does not expire. If it is valid today, it wi
 
 Integrity:: A bitcoin transaction signed with +SIGHASH_ALL+ or parts of a transaction signed by another +SIGHASH+ type cannot be modified without invalidating the signature, thus invalidating the transaction itself.
 
-Transaction Atomicity:: Bitcoin transactions are atomic. They are either valid and confirmed (mined) or not. Partial transactions cannot be mined and there is no interim state for a transaction. At any point in time a transaction is either mined, or not.
+Transaction Atomicity:: Sumcoin transactions are atomic. They are either valid and confirmed (mined) or not. Partial transactions cannot be mined and there is no interim state for a transaction. At any point in time a transaction is either mined, or not.
 
 Discrete (Indivisible) Units of Value:: Transaction outputs are discrete and indivisible units of value. They can either be spent or unspent, in full. They cannot be divided or partially spent.
 
@@ -69,7 +69,7 @@ Payment Channels:: ((("payment (state) channels", "building blocks (primitives) 
 
 ((("digital asset management")))Colored coins are used to track digital assets as well as physical assets held by third parties and traded through colored coins certificates of ownership. Digital asset colored coins can represent intangible assets such as a stock certificate, license, virtual property (game items), or most any form of licensed intellectual property (trademarks, copyrights, etc.). Tangible asset colored coins can represent certificates of ownership of commodities (gold, silver, oil), land title, automobiles, boats, aircraft, etc.
 
-((("Enhanced Padded-Order-Based Coloring (EPOBC)")))The term derives from the idea of "coloring" or marking a nominal amount of bitcoin, for example, a single satoshi, to represent something other than the bitcoin value itself. As an analogy, consider stamping a $1 note with a message saying, "this is a stock certificate of ACME" or "this note can be redeemed for 1 oz of silver" and then trading the $1 note as a certificate of ownership of this other asset. The first implementation of colored coins, named _Enhanced Padded-Order-Based Coloring_ or _EPOBC_, assigned extrinsic assets to a 1-satoshi output. In this way, it was a true "colored coin," as each asset was added as an attribute (color) of a single satoshi.
+((("Enhanced Padded-Order-Based Coloring (EPOBC)")))The term derives from the idea of "coloring" or marking a nominal amount of bitcoin, for example, a single sumtoshi, to represent something other than the bitcoin value itself. As an analogy, consider stamping a $1 note with a message saying, "this is a stock certificate of ACME" or "this note can be redeemed for 1 oz of silver" and then trading the $1 note as a certificate of ownership of this other asset. The first implementation of colored coins, named _Enhanced Padded-Order-Based Coloring_ or _EPOBC_, assigned extrinsic assets to a 1-sumtoshi output. In this way, it was a true "colored coin," as each asset was added as an attribute (color) of a single sumtoshi.
 
 More recent implementations of colored coins use the +OP_RETURN+ script opcode to store metadata in a transaction, in conjunction with external data stores that associate the metadata to specific assets.
 
@@ -108,7 +108,7 @@ If the metadata is too long to fit in +OP_RETURN+, the colored coins protocol ma
 
 In order to correctly interpret the metadata in a colored coins transaction you must use a compatible wallet or block explorer. Otherwise, the transaction looks like a "normal" bitcoin transaction with an +OP_RETURN+ output.
 
-As an example, I created and issued a MasterBTC asset using colored coins. The MasterBTC asset represents a voucher for a free copy of this book. These vouchers can be transferred, traded, and redeemed using a colored coins-compatible wallet.
+As an example, I created and issued a MasterSUM asset using colored coins. The MasterSUM asset represents a voucher for a free copy of this book. These vouchers can be transferred, traded, and redeemed using a colored coins-compatible wallet.
 
 For this particular example, I used the wallet and explorer at http://coinprism.info/[_https://coinprism.info_], which uses the Open Assets colored coins protocol.
 
@@ -120,7 +120,7 @@ https://www.coinprism.info/tx/10d7c4e022f35288779be6713471151ede967caaa39eecd352
 .The issuance transaction as viewed on coinprism.info
 image::images/mbc2_1201.png[The Issuance Transaction - as viewed on coinprism.info]
 
-As you can see, coinprism shows the issuance of 20 units of "Free copy of Mastering Bitcoin," the MasterBTC asset, to a special colored coin address:
+As you can see, coinprism shows the issuance of 20 units of "Free copy of Mastering Sumcoin," the MasterSUM asset, to a special colored coin address:
 
 ----
 akTnsDt5uzpioRST76VFRQM8q8sBFnQiwcx
@@ -188,10 +188,10 @@ u=https://cpr.sm/FoykwrH6UY
     "AcuRVsoa81hoLHmVTNXrRD8KpTqUXeqwgH"
   ],
   "contract_url": null,
-  "name_short": "MasterBTC",
-  "name": "Free copy of \"Mastering Bitcoin\"",
+  "name_short": "MasterSUM",
+  "name": "Free copy of \"Mastering Sumcoin\"",
   "issuer": "Andreas M. Antonopoulos",
-  "description": "This token is redeemable for a free copy of the book \"Mastering Bitcoin\"",
+  "description": "This token is redeemable for a free copy of the book \"Mastering Sumcoin\"",
   "description_mime": "text/x-markdown; charset=UTF-8",
   "type": "Other",
   "divisibility": 0,
@@ -215,7 +215,7 @@ More details about Counterparty can be found at https://counterparty.io. The ope
 [[state_channels]]
 === Payment Channels and State Channels
 
-_Payment channels_ ((("blockchain applications", "payment (state) channels", id="BCApayment12")))((("payment (state) channels", "defined")))are a trustless mechanism for exchanging bitcoin transactions between two parties, outside of the bitcoin blockchain. These transactions, which would be valid if settled on the bitcoin blockchain, are held off-chain instead, acting as _promissory notes_ for eventual batch settlement. Because the transactions are not settled, they can be exchanged without the usual settlement latency, allowing extremely high transaction throughput, low (submillisecond) latency, and fine (satoshi-level) granularity.
+_Payment channels_ ((("blockchain applications", "payment (state) channels", id="BCApayment12")))((("payment (state) channels", "defined")))are a trustless mechanism for exchanging bitcoin transactions between two parties, outside of the bitcoin blockchain. These transactions, which would be valid if settled on the bitcoin blockchain, are held off-chain instead, acting as _promissory notes_ for eventual batch settlement. Because the transactions are not settled, they can be exchanged without the usual settlement latency, allowing extremely high transaction throughput, low (submillisecond) latency, and fine (sumtoshi-level) granularity.
 
 Actually, the term _channel_ is a metaphor. State channels are virtual constructs represented by the exchange of state between two parties, outside of the blockchain. There are no "channels" per se and the underlying data transport mechanism is not the channel. We use the term channel to represent the relationship and shared state between two parties, outside of the blockchain.
 
@@ -247,7 +247,7 @@ image::images/mbc2_1204.png["A payment channel between Bob and Alice, showing th
 
 ((("payment (state) channels", "example of", id="PSCexample12")))To explain state channels, we start with a very simple example. We demonstrate a one-way channel, meaning that value is flowing in one direction only. We will also start with the naive assumption that no one is trying to cheat, to keep things simple. Once we have the basic channel idea explained, we will then look at what it takes to make it trustless so that neither party _can_ cheat, even if they are trying to.
 
-For this example we will assume two participants: Emma and Fabian. Fabian offers a video streaming service that is billed by the second using a micropayment channel. Fabian charges 0.01 millibit (0.00001 BTC) per second of video, equivalent to 36 millibits (0.036 BTC) per hour of video. Emma is a user who purchases this streaming video service from Fabian. <<emma_fabian_streaming_video>> shows Emma buying the video streaming service from Fabian using a payment channel.
+For this example we will assume two participants: Emma and Fabian. Fabian offers a video streaming service that is billed by the second using a micropayment channel. Fabian charges 0.01 millibit (0.00001 SUM) per second of video, equivalent to 36 millibits (0.036 SUM) per hour of video. Emma is a user who purchases this streaming video service from Fabian. <<emma_fabian_streaming_video>> shows Emma buying the video streaming service from Fabian using a payment channel.
 
 [[emma_fabian_streaming_video]]
 .Emma purchases streaming video from Fabian with a payment channel, paying for each second of video
@@ -257,7 +257,7 @@ In this example, Fabian and Emma are using special software that handles both th
 
 To set up the payment channel, Emma and Fabian establish a 2-of-2 multisignature address, with each of them holding one of the keys. From Emma's perspective, the software in her browser presents a QR code with a P2SH address (starting with "3"), and asks her to submit a "deposit" for up to 1 hour of video. The address is then funded by Emma. Emma's transaction, paying to the multisignature address, is the funding or anchor transaction for the payment channel.
 
-For this example, let's say that Emma funds the channel with 36 millibits (0.036 BTC). This will allow Emma to consume _up to_ 1 hour of streaming video. The funding transaction in this case sets the maximum amount that can be transmitted in this channel, setting the _channel capacity_.
+For this example, let's say that Emma funds the channel with 36 millibits (0.036 SUM). This will allow Emma to consume _up to_ 1 hour of streaming video. The funding transaction in this case sets the maximum amount that can be transmitted in this channel, setting the _channel capacity_.
 
 The funding transaction consumes one or more inputs from Emma's wallet, sourcing the funds. It creates one output with a value of 36 millibits paid to the multisignature 2-of-2 address controlled jointly between Emma and Fabian. It may have additional outputs for change back to Emma's wallet.
 
@@ -535,9 +535,9 @@ Privacy:: Lightning Network payments are much more private than payments on the 
 
 Fungibility:: A Lightning Network makes it much more difficult to apply surveillance and blacklists on bitcoin, increasing the fungibility of the currency.
 
-Speed:: Bitcoin transactions using Lightning Network are settled in milliseconds, rather than minutes, as HTLCs are cleared without committing transactions to a block.
+Speed:: Sumcoin transactions using Lightning Network are settled in milliseconds, rather than minutes, as HTLCs are cleared without committing transactions to a block.
 
-Granularity:: A Lightning Network can enable payments at least as small as the bitcoin "dust" limit, perhaps even smaller. Some proposals allow for subsatoshi increments.
+Granularity:: A Lightning Network can enable payments at least as small as the bitcoin "dust" limit, perhaps even smaller. Some proposals allow for subsumtoshi increments.
 
 Capacity:: A Lightning Network increases the capacity of the bitcoin system by several orders of magnitude. There is no practical upper bound to the number of payments per second that can be routed over a Lightning Network, as it depends only on the capacity and speed of each node.
 

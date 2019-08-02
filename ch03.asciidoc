@@ -1,38 +1,38 @@
 [[ch03_bitcoin_client]]
-== Bitcoin Core: The Reference Implementation
+== Sumcoin Core: The Reference Implementation
 
-((("open source licenses")))((("Nakamoto, Satoshi")))Bitcoin is an _open source_ project and the source code is available under an open (MIT) license, free to download and use for any purpose. Open source means more than simply free to use. It also means that bitcoin is developed by an open community of volunteers. At first, that community consisted of only Satoshi Nakamoto. By 2016, bitcoin's source code had more than 400 contributors with about a dozen developers working on the code almost full-time and several dozen more on a part-time basis. Anyone can contribute to the code&#x2014;including you!
+((("open source licenses")))((("Nakamoto, Satoshi")))Sumcoin is an _open source_ project and the source code is available under an open (MIT) license, free to download and use for any purpose. Open source means more than simply free to use. It also means that bitcoin is developed by an open community of volunteers. At first, that community consisted of only Satoshi Nakamoto. By 2016, bitcoin's source code had more than 400 contributors with about a dozen developers working on the code almost full-time and several dozen more on a part-time basis. Anyone can contribute to the code&#x2014;including you!
 
 
-((("bitcoin whitepaper")))((("Satoshi client")))((("reference implementation", see="Bitcoin Core")))((("Bitcoin Core", "reference implementation")))When bitcoin was created by Satoshi Nakamoto, the software was actually completed before the whitepaper reproduced in <<satoshi_whitepaper>> was written. Satoshi wanted to make sure it worked before writing about it. That first implementation, then simply known as "Bitcoin" or "Satoshi client," has been heavily modified and improved. It has evolved into what is known as _Bitcoin Core_, to differentiate it from other compatible implementations. Bitcoin Core is the _reference implementation_ of the bitcoin system, meaning that it is the authoritative reference on how each part of the technology should be implemented. Bitcoin Core implements all aspects of bitcoin, including wallets, a transaction and block validation engine, and a full network node in the peer-to-peer bitcoin network.
+((("bitcoin whitepaper")))((("Satoshi client")))((("reference implementation", see="Sumcoin Core")))((("Sumcoin Core", "reference implementation")))When bitcoin was created by Satoshi Nakamoto, the software was actually completed before the whitepaper reproduced in <<sumtoshi_whitepaper>> was written. Satoshi wanted to make sure it worked before writing about it. That first implementation, then simply known as "Sumcoin" or "Satoshi client," has been heavily modified and improved. It has evolved into what is known as _Sumcoin Core_, to differentiate it from other compatible implementations. Sumcoin Core is the _reference implementation_ of the bitcoin system, meaning that it is the authoritative reference on how each part of the technology should be implemented. Sumcoin Core implements all aspects of bitcoin, including wallets, a transaction and block validation engine, and a full network node in the peer-to-peer bitcoin network.
 
 [WARNING]
 ====
-((("wallets", "best practices for")))((("bitcoin improvement proposals", "Mnemonic Code Words (BIP-39)")))((("bitcoin improvement proposals", "Hierarchical Deterministic Wallets (BIP-32/BIP-44)")))Even though Bitcoin Core includes a reference implementation of a wallet, this is not intended to be used as a production wallet for users or for applications. Application developers are advised to build wallets using modern standards such as BIP-39 and BIP-32 (see <<mnemonic_code_words>> and <<hd_wallets>>). BIP stands for _Bitcoin Improvement Proposal_.
+((("wallets", "best practices for")))((("bitcoin improvement proposals", "Mnemonic Code Words (BIP-39)")))((("bitcoin improvement proposals", "Hierarchical Deterministic Wallets (BIP-32/BIP-44)")))Even though Sumcoin Core includes a reference implementation of a wallet, this is not intended to be used as a production wallet for users or for applications. Application developers are advised to build wallets using modern standards such as BIP-39 and BIP-32 (see <<mnemonic_code_words>> and <<hd_wallets>>). BIP stands for _Sumcoin Improvement Proposal_.
 ====
 
-<<bitcoin_core_architecture>> shows the architecture of Bitcoin Core.((("Bitcoin Core", "architecture")))
+<<bitcoin_core_architecture>> shows the architecture of Sumcoin Core.((("Sumcoin Core", "architecture")))
 
 [[bitcoin_core_architecture]]
-.Bitcoin Core architecture (Source: Eric Lombrozo)
-image::images/mbc2_0301.png["Bitcoin Core Architecture"]
+.Sumcoin Core architecture (Source: Eric Lombrozo)
+image::images/mbc2_0301.png["Sumcoin Core Architecture"]
 
 
-=== Bitcoin Development Environment
+=== Sumcoin Development Environment
 
-((("development environment", "setup", see="Bitcoin Core")))If you're a developer, you will want to set up a development environment with all the tools, libraries, and support software for writing bitcoin applications. In this highly technical chapter, we'll walk through that process step-by-step. If the material becomes too dense (and you're not actually setting up a development environment) feel free to skip to the next chapter, which is less technical.
+((("development environment", "setup", see="Sumcoin Core")))If you're a developer, you will want to set up a development environment with all the tools, libraries, and support software for writing bitcoin applications. In this highly technical chapter, we'll walk through that process step-by-step. If the material becomes too dense (and you're not actually setting up a development environment) feel free to skip to the next chapter, which is less technical.
 
 [[compiling_core]]
-=== Compiling Bitcoin Core from the Source Code
+=== Compiling Sumcoin Core from the Source Code
 
-((("Bitcoin Core", "compiling from source code", id="BCsource03")))((("Bitcoin Core", "compiling from source code", "downloading")))((("code examples, obtaining and using")))Bitcoin Core's source code can be downloaded as a archive or by cloning the authoritative source repository from GitHub.  ((("Bitcoin Core downloads")))On the https://bitcoincore.org/bin/[Bitcoin Core download page], select the most recent version and download the compressed archive of the source code, e.g., +bitcoin-0.15.0.2.tar.gz+. ((("GitHub bitcoin page")))Alternatively, use the git command line to create a local copy of the source code from the https://github.com/bitcoin/bitcoin[GitHub bitcoin page].
+((("Sumcoin Core", "compiling from source code", id="BCsource03")))((("Sumcoin Core", "compiling from source code", "downloading")))((("code examples, obtaining and using")))Sumcoin Core's source code can be downloaded as a archive or by cloning the authoritative source repository from GitHub.  ((("Sumcoin Core downloads")))On the https://bitcoincore.org/bin/[Sumcoin Core download page], select the most recent version and download the compressed archive of the source code, e.g., +bitcoin-0.15.0.2.tar.gz+. ((("GitHub bitcoin page")))Alternatively, use the git command line to create a local copy of the source code from the https://github.com/bitcoin/bitcoin[GitHub bitcoin page].
 
 [TIP]
 ====
 ((("$ symbol")))((("shell commands")))((("terminal applications")))In many of the examples in this chapter we will be using the operating system's command-line interface (also known as a "shell"), accessed via a "terminal" application. The shell will display a prompt; you type a command; and the shell responds with some text and a new prompt for your next command. The prompt may look different on your system, but in the following examples it is denoted by a +$+ symbol. In the examples, when you see text after a +$+ symbol, don't type the +$+ symbol but type the command immediately following it, then press Enter to execute the command. In the examples, the lines below each command are the operating system's responses to that command. When you see the next +$+ prefix, you'll know it's a new command and you should repeat the process.
 ====
 
-((("cloning source code")))((("source code, cloning", seealso="Bitcoin Core")))In this example, we are using the +git+ command to create a local copy ("clone") of the source code:
+((("cloning source code")))((("source code, cloning", seealso="Sumcoin Core")))In this example, we are using the +git+ command to create a local copy ("clone") of the source code:
 
 ----
 $ git clone https://github.com/bitcoin/bitcoin.git
@@ -57,8 +57,8 @@ When the git cloning operation has completed, you will have a complete local cop
 $ cd bitcoin
 ----
 
-==== Selecting a Bitcoin Core Release
-((("Bitcoin Core", "compiling from source code", "version selection")))By default, the local copy will be synchronized with the most recent code, which might be an unstable or beta version of bitcoin. Before compiling the code, select a specific version by checking out a release _tag_. This will synchronize the local copy with a specific snapshot of the code repository identified by a keyword tag. Tags are used by the developers to mark specific releases of the code by version number. First, to find the available tags, we use the +git tag+ command:
+==== Selecting a Sumcoin Core Release
+((("Sumcoin Core", "compiling from source code", "version selection")))By default, the local copy will be synchronized with the most recent code, which might be an unstable or beta version of bitcoin. Before compiling the code, select a specific version by checking out a release _tag_. This will synchronize the local copy with a specific snapshot of the code repository identified by a keyword tag. Tags are used by the developers to mark specific releases of the code by version number. First, to find the available tags, we use the +git tag+ command:
 
 ----
 $ git tag
@@ -88,9 +88,9 @@ HEAD detached at v0.15.0
 nothing to commit, working directory clean
 ----
 
-==== Configuring the Bitcoin Core Build
+==== Configuring the Sumcoin Core Build
 
-((("Bitcoin Core", "compiling from source code", "build configuration")))((("documentation")))((("build documentation", seealso="Bitcoin Core")))The source code includes documentation, which can be found in a number of files. Review the main documentation located in _README.md_ in the _bitcoin_ directory by typing ++**more README.md**++ at the prompt and using the spacebar to progress to the next page. In this chapter, we will build the command-line bitcoin client, also known as +bitcoind+ on Linux. Review the instructions for compiling the +bitcoind+ command-line client on your platform by typing ++**more doc/build-unix.md**++. Alternative instructions for macOS and Windows can be found in the _doc_ directory, as _build-osx.md_ or _build-windows.md_, respectively.
+((("Sumcoin Core", "compiling from source code", "build configuration")))((("documentation")))((("build documentation", seealso="Sumcoin Core")))The source code includes documentation, which can be found in a number of files. Review the main documentation located in _README.md_ in the _bitcoin_ directory by typing ++**more README.md**++ at the prompt and using the spacebar to progress to the next page. In this chapter, we will build the command-line bitcoin client, also known as +bitcoind+ on Linux. Review the instructions for compiling the +bitcoind+ command-line client on your platform by typing ++**more doc/build-unix.md**++. Alternative instructions for macOS and Windows can be found in the _doc_ directory, as _build-osx.md_ or _build-windows.md_, respectively.
 
 Carefully review the build prerequisites, which are in the first part of the build documentation. These are libraries that must be present on your system before you can begin to compile bitcoin. If these prerequisites are missing, the build process will fail with an error. If this happens because you missed a prerequisite, you can install it and then resume the build process from where you left off. Assuming the prerequisites are installed, you start the build process by generating a set of build scripts using the _autogen.sh_ script.
 
@@ -115,7 +115,7 @@ The _autogen.sh_ script creates a set of automatic configuration scripts that wi
 
 ----
 $ ./configure --help
-`configure' configures Bitcoin Core 0.15.0 to adapt to many kinds of systems.
+`configure' configures Sumcoin Core 0.15.0 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -171,9 +171,9 @@ $
 
 If all went well, the +configure+ command will end by creating the customized build scripts that will allow us to compile +bitcoind+. If there are any missing libraries or errors, the +configure+ command will terminate with an error instead of creating the build scripts. If an error occurs, it is most likely because of a missing or incompatible library. Review the build documentation again and make sure you install the missing prerequisites. Then run +configure+ again and see if that fixes the error.
 
-==== Building the Bitcoin Core Executables
+==== Building the Sumcoin Core Executables
 
-((("Bitcoin Core", "compiling from source code", "core executables")))((("core executables", seealso="Bitcoin Core")))Next, you will compile the source code, a process that can take up to an hour to complete, depending on the speed of your CPU and available memory. During the compilation process you should see output every few seconds or every few minutes, or an error if something goes wrong. If an error occurs, or the compilation process is interrupted, it can be resumed any time by typing +make+ again. Type ++**make**++ to start compiling the executable application:
+((("Sumcoin Core", "compiling from source code", "core executables")))((("core executables", seealso="Sumcoin Core")))Next, you will compile the source code, a process that can take up to an hour to complete, depending on the speed of your CPU and available memory. During the compilation process you should see output every few seconds or every few minutes, or an error if something goes wrong. If an error occurs, or the compilation process is interrupted, it can be resumed any time by typing +make+ again. Type ++**make**++ to start compiling the executable application:
 
 ----
 $ make
@@ -194,7 +194,7 @@ Making all in src
 $
 ----
 
-On a fast system with more than one CPU, you might want to set the number of parallel compile jobs. For instance, +make -j 2+ will use two cores if they are available. If all goes well, Bitcoin Core is now compiled. You should run the unit test suite with +make check+ to ensure the linked libraries are not broken in obvious ways. The final step is to install the various executables on your system using the +make install+ command. You may be prompted for your user password, because this step requires administrative privileges:
+On a fast system with more than one CPU, you might want to set the number of parallel compile jobs. For instance, +make -j 2+ will use two cores if they are available. If all goes well, Sumcoin Core is now compiled. You should run the unit test suite with +make check+ to ensure the linked libraries are not broken in obvious ways. The final step is to install the various executables on your system using the +make install+ command. You may be prompted for your user password, because this step requires administrative privileges:
 
 ----
 $ make check && sudo make install
@@ -208,7 +208,7 @@ libtool: install: /usr/bin/install -c bitcoin-tx /usr/local/bin/bitcoin-tx
 $
 ----
 
-((("", startref="BCsource03")))The default installation of +bitcoind+ puts it in _/usr/local/bin_. You can confirm that Bitcoin Core is correctly installed by asking the system for the path of the executables, as follows:
+((("", startref="BCsource03")))The default installation of +bitcoind+ puts it in _/usr/local/bin_. You can confirm that Sumcoin Core is correctly installed by asking the system for the path of the executables, as follows:
 
 ----
 $ which bitcoind
@@ -218,15 +218,15 @@ $ which bitcoin-cli
 /usr/local/bin/bitcoin-cli
 ----
 
-=== Running a Bitcoin Core Node
+=== Running a Sumcoin Core Node
 
-((("Bitcoin Core", "running core nodes", id="BCnode03")))((("bitcoin nodes", "running core nodes", id="BNcore03")))Bitcoin's peer-to-peer network is composed of network "nodes," run mostly by volunteers and some of the businesses that build bitcoin applications. Those running bitcoin nodes have a direct and authoritative view of the bitcoin blockchain, with a local copy of all the transactions, independently validated by their own system. By running a node, you don't have to rely on any third party to validate a transaction. Moreover, by running a bitcoin node you contribute to the bitcoin network by making it more robust.
+((("Sumcoin Core", "running core nodes", id="BCnode03")))((("bitcoin nodes", "running core nodes", id="BNcore03")))Sumcoin's peer-to-peer network is composed of network "nodes," run mostly by volunteers and some of the businesses that build bitcoin applications. Those running bitcoin nodes have a direct and authoritative view of the bitcoin blockchain, with a local copy of all the transactions, independently validated by their own system. By running a node, you don't have to rely on any third party to validate a transaction. Moreover, by running a bitcoin node you contribute to the bitcoin network by making it more robust.
 
-Running a node, however, requires a permanently connected system with enough resources to process all bitcoin transactions. Depending on whether you choose to index all transactions and keep a full copy of the blockchain, you may also need a lot of disk space and RAM. As of early 2018, a full-index node needs 2 GB of RAM and a minimum of 160 GB of disk space (see https://blockchain.info/charts/blocks-size[]). Bitcoin nodes also transmit and receive bitcoin transactions and blocks, consuming internet bandwidth. If your internet connection is limited, has a low data cap, or is metered (charged by the gigabit), you should probably not run a bitcoin node on it, or run it in a way that constrains its bandwidth (see <<constrained_resources>>).
+Running a node, however, requires a permanently connected system with enough resources to process all bitcoin transactions. Depending on whether you choose to index all transactions and keep a full copy of the blockchain, you may also need a lot of disk space and RAM. As of early 2018, a full-index node needs 2 GB of RAM and a minimum of 160 GB of disk space (see https://blockchain.info/charts/blocks-size[]). Sumcoin nodes also transmit and receive bitcoin transactions and blocks, consuming internet bandwidth. If your internet connection is limited, has a low data cap, or is metered (charged by the gigabit), you should probably not run a bitcoin node on it, or run it in a way that constrains its bandwidth (see <<constrained_resources>>).
 
 [TIP]
 ====
-((("warnings and cautions", "core node resource requirements")))((("resource requirements")))Bitcoin Core keeps a full copy of the blockchain by default, with every transaction that has ever occurred on the bitcoin network since its inception in 2009. This dataset is dozens of gigabytes in size and is downloaded incrementally over several days or weeks, depending on the speed of your CPU and internet connection. Bitcoin Core will not be able to process transactions or update account balances until the full blockchain dataset is downloaded. Make sure you have enough disk space, bandwidth, and time to complete the initial synchronization. You can configure Bitcoin Core to reduce the size of the blockchain by discarding old blocks (see <<constrained_resources>>), but it will still download the entire dataset before discarding data.
+((("warnings and cautions", "core node resource requirements")))((("resource requirements")))Sumcoin Core keeps a full copy of the blockchain by default, with every transaction that has ever occurred on the bitcoin network since its inception in 2009. This dataset is dozens of gigabytes in size and is downloaded incrementally over several days or weeks, depending on the speed of your CPU and internet connection. Sumcoin Core will not be able to process transactions or update account balances until the full blockchain dataset is downloaded. Make sure you have enough disk space, bandwidth, and time to complete the initial synchronization. You can configure Sumcoin Core to reduce the size of the blockchain by discarding old blocks (see <<constrained_resources>>), but it will still download the entire dataset before discarding data.
 ====
 
 Despite these resource requirements, thousands of volunteers run bitcoin nodes. Some are running on systems as simple as a Raspberry Pi (a $35 USD computer the size of a pack of cards). Many volunteers also run bitcoin nodes on rented servers, usually some variant of Linux. A _Virtual Private Server_ (VPS) or _Cloud Computing Server_ instance can be used to run a bitcoin node. Such servers can be rented for $25 to $50 USD per month from a variety of providers.
@@ -243,13 +243,13 @@ Why would you want to run a node? Here are some of the most common reasons:
 
 If you're reading this book and interested in developing bitcoin software, you should be running your own node.
 
-==== Configuring the Bitcoin Core Node
+==== Configuring the Sumcoin Core Node
 
-((("Bitcoin Core", "running core nodes", "configuring")))((("warnings and cautions", "password creation")))((("passwords", "creating")))((("security", "passwords")))Bitcoin Core will look for a configuration file in its data directory on every start. In this section we will examine the various configuration options and set up a configuration file. To locate the configuration file, run +bitcoind -printtoconsole+ in your terminal and look for the first couple of lines.
+((("Sumcoin Core", "running core nodes", "configuring")))((("warnings and cautions", "password creation")))((("passwords", "creating")))((("security", "passwords")))Sumcoin Core will look for a configuration file in its data directory on every start. In this section we will examine the various configuration options and set up a configuration file. To locate the configuration file, run +bitcoind -printtoconsole+ in your terminal and look for the first couple of lines.
 
 ----
 $ bitcoind -printtoconsole
-Bitcoin version v0.15.0
+Sumcoin version v0.15.0
 Using the 'standard' SHA256 implementation
 Using data directory /home/ubuntu/.bitcoin/
 Using config file /home/ubuntu/.bitcoin/bitcoin.conf
@@ -260,14 +260,14 @@ Using config file /home/ubuntu/.bitcoin/bitcoin.conf
 
 You can hit Ctrl-C to shut down the node once you determine the location of the config file. Usually the configuration file is inside the _.bitcoin_ data directory under your user's home directory. Open the configuration file in your preferred editor.
 
-Bitcoin Core offers more than 100 configuration options that modify the behavior of the network node, the storage of the blockchain, and many other aspects of its operation. To see a listing of these options, run +bitcoind  --help+:
+Sumcoin Core offers more than 100 configuration options that modify the behavior of the network node, the storage of the blockchain, and many other aspects of its operation. To see a listing of these options, run +bitcoind  --help+:
 
 ----
 $ bitcoind --help
-Bitcoin Core Daemon version v0.15.0
+Sumcoin Core Daemon version v0.15.0
 
 Usage:
-  bitcoind [options]                     Start Bitcoin Core Daemon
+  bitcoind [options]                     Start Sumcoin Core Daemon
 
 Options:
 
@@ -288,7 +288,7 @@ Options:
        Set the number of threads to service RPC calls (default: 4)
 ----
 
-((("configuration options", seealso="Bitcoin Core")))Here are some of the most important options that you can set in the configuration file, or as command-line parameters to +bitcoind+:
+((("configuration options", seealso="Sumcoin Core")))Here are some of the most important options that you can set in the configuration file, or as command-line parameters to +bitcoind+:
 
 alertnotify:: Run a specified command or script to send emergency alerts to the owner of this node, usually by email.
 
@@ -314,7 +314,7 @@ minrelaytxfee:: Set the minimum fee rate for transaction you will relay. Below t
 [[txindex]]
 .Transaction Database Index and txindex Option
 ****
-((("Bitcoin Core", "running core nodes", "database options")))((("transactions", "database configuration options")))((("txindex option")))((("full indexing option")))By default, Bitcoin Core builds a database containing _only_ the transactions related to the user's wallet. If you want to be able to access _any_ transaction with commands like +getrawtransaction+ (see <<exploring_and_decoding_transanctions>>), you need to configure Bitcoin Core to build a complete transaction index, which can be achieved with the +txindex+ option. Set +txindex=1+ in the Bitcoin Core configuration file. If you don't set this option at first and later set it to full indexing, you need to restart +bitcoind+ with the +-reindex+ option and wait for it to rebuild the index.
+((("Sumcoin Core", "running core nodes", "database options")))((("transactions", "database configuration options")))((("txindex option")))((("full indexing option")))By default, Sumcoin Core builds a database containing _only_ the transactions related to the user's wallet. If you want to be able to access _any_ transaction with commands like +getrawtransaction+ (see <<exploring_and_decoding_transanctions>>), you need to configure Sumcoin Core to build a complete transaction index, which can be achieved with the +txindex+ option. Set +txindex=1+ in the Sumcoin Core configuration file. If you don't set this option at first and later set it to full indexing, you need to restart +bitcoind+ with the +-reindex+ option and wait for it to rebuild the index.
 ****
 
 <<full_index_node>> shows how you might combine the preceding options, with a fully indexed node, running as an API backend for a bitcoin application.
@@ -345,12 +345,12 @@ maxsendbuffer=500
 ----
 ====
 
-Once you've edited the configuration file and set the options that best represent your needs, you can test +bitcoind+ with this configuration. Run Bitcoin Core with the option +printtoconsole+ to run in the foreground with output to the console:
+Once you've edited the configuration file and set the options that best represent your needs, you can test +bitcoind+ with this configuration. Run Sumcoin Core with the option +printtoconsole+ to run in the foreground with output to the console:
 
 ----
 $ bitcoind -printtoconsole
 
-Bitcoin version v0.15.0
+Sumcoin version v0.15.0
 InitParameterInteraction: parameter interaction: -whitelistforcerelay=1 -> setting -whitelistrelay=1
 Assuming ancestors of block 0000000000000000003b9ce759c2a087d52abc4266f8f4ebd6d768b89defa50a have valid signatures.
 Using the 'standard' SHA256 implementation
@@ -383,7 +383,7 @@ Opened LevelDB successfully
 
 You can hit Ctrl-C to interrupt the process once you are satisfied that it is loading the correct settings and running as you expect.
 
-To run Bitcoin Core in the background as a process, start it with the +daemon+ option, as +bitcoind -daemon+.
+To run Sumcoin Core in the background as a process, start it with the +daemon+ option, as +bitcoind -daemon+.
 
 To monitor the progress and runtime status of your bitcoin node, use the command +bitcoin-cli getblockchaininfo+:
 
@@ -411,9 +411,9 @@ This shows a node with a blockchain height of 0 blocks and 83999 headers. The no
 
 Once you are happy with the configuration options you have selected, you should add bitcoin to the startup scripts in your operating system, so that it runs continuously and restarts when the operating system restarts. You will find a number of example startup scripts for various operating systems in bitcoin's source directory under _contrib/init_ and a _README.md_ file showing which system uses which script.((("", startref="BCnode03")))((("", startref="BNcore03")))
 
-=== Bitcoin Core Application Programming Interface (API)
+=== Sumcoin Core Application Programming Interface (API)
 
-((("Bitcoin Core", "Bitcoin Core API", id="BCapi03")))The Bitcoin Core client implements a JSON-RPC interface that can also be accessed using the command-line helper +bitcoin-cli+. The command line allows us to experiment interactively with the capabilities that are also available programmatically via the API. ((("Bitcoin Core", "Bitcoin Core API", "RPC commands")))To start, invoke the +help+ command to see a list of the available bitcoin RPC commands:
+((("Sumcoin Core", "Sumcoin Core API", id="BCapi03")))The Sumcoin Core client implements a JSON-RPC interface that can also be accessed using the command-line helper +bitcoin-cli+. The command line allows us to experiment interactively with the capabilities that are also available programmatically via the API. ((("Sumcoin Core", "Sumcoin Core API", "RPC commands")))To start, invoke the +help+ command to see a list of the available bitcoin RPC commands:
 
 [[bitcoind_commands]]
 
@@ -459,15 +459,15 @@ $ bitcoin-cli getblockhash 1000
 00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09
 ----
 
-The result is a block hash, which is described in more detail in the following chapters. But for now, this command should return the same result on your system, demonstrating that your Bitcoin Core node is running, is accepting commands, and has information about block 1000 to return to you.
+The result is a block hash, which is described in more detail in the following chapters. But for now, this command should return the same result on your system, demonstrating that your Sumcoin Core node is running, is accepting commands, and has information about block 1000 to return to you.
 
 In the next sections we will demonstrate some very useful RPC commands and their expected output.
 
-==== Getting Information on the Bitcoin Core Client Status
+==== Getting Information on the Sumcoin Core Client Status
 
-((("Bitcoin Core", "Bitcoin Core API", "status information")))Bitcoin Core provides status reports on diffent modules through the JSON-RPC interface. The most important commands include +getblockchaininfo+, +getmempoolinfo+, +getnetworkinfo+ and +getwalletinfo+.
+((("Sumcoin Core", "Sumcoin Core API", "status information")))Sumcoin Core provides status reports on diffent modules through the JSON-RPC interface. The most important commands include +getblockchaininfo+, +getmempoolinfo+, +getnetworkinfo+ and +getwalletinfo+.
 
-Bitcoin's +getblockchaininfo+ RPC command was introduced earlier. The +getnetworkinfo+ command displays basic information about the status of the bitcoin network node. Use +bitcoin-cli+ to run it:
+Sumcoin's +getblockchaininfo+ RPC command was introduced earlier. The +getnetworkinfo+ command displays basic information about the status of the bitcoin network node. Use +bitcoin-cli+ to run it:
 
 ----
 $ bitcoin-cli getnetworkinfo
@@ -506,7 +506,7 @@ It will take some time, perhaps more than a day, for the +bitcoind+ client to "c
 [[exploring_and_decoding_transanctions]]
 ==== Exploring and Decoding Transactions
 
-((("Bitcoin Core", "Bitcoin Core API", "exploring and decoding transactions")))((("transactions", "exploring with Bitcoin Core API")))Commands: +getrawtransaction+, +decoderawtransaction+
+((("Sumcoin Core", "Sumcoin Core API", "exploring and decoding transactions")))((("transactions", "exploring with Sumcoin Core API")))Commands: +getrawtransaction+, +decoderawtransaction+
 
 
 
@@ -608,7 +608,7 @@ We can further explore the blockchain by examining the previous transaction refe
 
 ==== Exploring Blocks
 
-((("Bitcoin Core", "Bitcoin Core API", "exploring blocks")))((("blocks", "exploring with Bitcoin Core API")))Commands: +getblock+, +getblockhash+
+((("Sumcoin Core", "Sumcoin Core API", "exploring blocks")))((("blocks", "exploring with Sumcoin Core API")))Commands: +getblock+, +getblockhash+
 
 ((("blocks", "block height")))((("blocks", "block hash")))Exploring blocks is similar to exploring transactions. However, blocks can be referenced either by the block _height_ or by the block _hash_. First, let's find a block by its height. In <<cup_of_coffee>>, we saw that Alice's transaction was included in block 277316.
 
@@ -670,11 +670,11 @@ $ bitcoin-cli getblock 0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b3&#x
 
 The block contains 419 transactions and the 64th transaction listed (+0627052b...+) is Alice's coffee payment. The +height+ entry tells us this is the 277316th block in the blockchain.
 
-==== Using Bitcoin Core's Programmatic Interface
+==== Using Sumcoin Core's Programmatic Interface
 
-((("Bitcoin Core", "Bitcoin Core API", "using programmatic interface")))((("programmatic interface", id="progint03")))The +bitcoin-cli+ helper is very useful for exploring the Bitcoin Core API and testing functions. But the whole point of an application programming interface is to access functions programmatically. In this section we will demonstrate accessing Bitcoin Core from another program.
+((("Sumcoin Core", "Sumcoin Core API", "using programmatic interface")))((("programmatic interface", id="progint03")))The +bitcoin-cli+ helper is very useful for exploring the Sumcoin Core API and testing functions. But the whole point of an application programming interface is to access functions programmatically. In this section we will demonstrate accessing Sumcoin Core from another program.
 
-Bitcoin Core's API is a JSON-RPC interface. JSON stands for JavaScript Object Notation and it is a very convenient way to present data that both humans and programs can easily read. RPC stands for Remote Procedure Call, which means that we are calling procedures (functions) that are remote (on the Bitcoin Core node) via a network protocol. In this case, the network protocol is HTTP, or HTTPS (for encrypted connections).
+Sumcoin Core's API is a JSON-RPC interface. JSON stands for JavaScript Object Notation and it is a very convenient way to present data that both humans and programs can easily read. RPC stands for Remote Procedure Call, which means that we are calling procedures (functions) that are remote (on the Sumcoin Core node) via a network protocol. In this case, the network protocol is HTTP, or HTTPS (for encrypted connections).
 
 When we used the +bitcoin-cli+ command to get help on a command, it showed us an example of using +curl+, the versatile command-line HTTP client to construct one of these JSON-RPC calls:
 
@@ -684,16 +684,16 @@ $ curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "met
 
 This command shows that +curl+ submits an HTTP request to the local host (127.0.0.1), connecting to the default bitcoin port (8332), and submitting a  +jsonrpc+ request for the +getblockchaininfo+ method using +text/plain+ encoding.
 
-You might notice that curl will ask for credentials to be sent along with the request. Bitcoin Core will create a random password on each start and place it in the data directory under the name +.cookie+. The +bitcoin-cli+ helper can read this password file given the data directory. Similarly, you can copy the password and pass it to curl (or any higher level Bitcoin Core RPC wrappers). Alternatively, you can create a static password with the helper script provided in _./share/rpcuser/rpcuser.py_ in Bitcoin Core's source directory.
+You might notice that curl will ask for credentials to be sent along with the request. Sumcoin Core will create a random password on each start and place it in the data directory under the name +.cookie+. The +bitcoin-cli+ helper can read this password file given the data directory. Similarly, you can copy the password and pass it to curl (or any higher level Sumcoin Core RPC wrappers). Alternatively, you can create a static password with the helper script provided in _./share/rpcuser/rpcuser.py_ in Sumcoin Core's source directory.
 
 If you're implementing a JSON-RPC call in your own program, you can use a generic HTTP library to construct the call, similar to what is shown in the preceding +curl+ example.
 
-However, there are libraries in most every programming language that "wrap" the Bitcoin Core API in a way that makes this a lot simpler. We will use the +python-bitcoinlib+ library to simplify API access. Remember, this requires you to have a running Bitcoin Core instance, which will be used to make JSON-RPC calls.
+However, there are libraries in most every programming language that "wrap" the Sumcoin Core API in a way that makes this a lot simpler. We will use the +python-bitcoinlib+ library to simplify API access. Remember, this requires you to have a running Sumcoin Core instance, which will be used to make JSON-RPC calls.
 
-The Python script in <<rpc_example>> makes a simple +getblockchaininfo+ call and prints the +block+ parameter from the data returned by Bitcoin Core.
+The Python script in <<rpc_example>> makes a simple +getblockchaininfo+ call and prints the +block+ parameter from the data returned by Sumcoin Core.
 
 [[rpc_example]]
-.Running getblockchaininfo via Bitcoin Core's JSON-RPC API
+.Running getblockchaininfo via Sumcoin Core's JSON-RPC API
 ====
 [source,python]
 ----
@@ -708,7 +708,7 @@ $ python rpc_example.py
 394075
 ----
 
-It tells us that our local Bitcoin Core node has 394075 blocks in its blockchain. Not a spectacular result, but it demonstrates the basic use of the library as a simplified interface to Bitcoin Core's JSON-RPC API.
+It tells us that our local Sumcoin Core node has 394075 blocks in its blockchain. Not a spectacular result, but it demonstrates the basic use of the library as a simplified interface to Sumcoin Core's JSON-RPC API.
 
 Next, let's use the +getrawtransaction+ and +decodetransaction+ calls to retrieve the details of Alice's coffee payment. In <<rpc_transaction>>, we retrieve Alice's transaction and list the transaction's outputs. For each output, we show the recipient address and value. As a reminder, Alice's transaction had one output paying Bob's Cafe and one output for change back to Alice.
 
@@ -750,17 +750,17 @@ $ python rpc_block.py
 ('Total value in block: ', Decimal('10322.07722534'))
 ----
 
-Our example code calculates that the total value transacted in this block is 10,322.07722534 BTC (including 25 BTC reward and 0.0909 BTC in fees). Compare that to the amount reported by a block explorer site by searching for the block hash or height. Some block explorers report the total value excluding the reward and excluding the fees. See if you can spot the difference.((("", startref="BCapi03")))((("", startref="progint03")))
+Our example code calculates that the total value transacted in this block is 10,322.07722534 SUM (including 25 SUM reward and 0.0909 SUM in fees). Compare that to the amount reported by a block explorer site by searching for the block hash or height. Some block explorers report the total value excluding the reward and excluding the fees. See if you can spot the difference.((("", startref="BCapi03")))((("", startref="progint03")))
 
 [[alt_libraries]]
 === Alternative Clients, Libraries, and Toolkits
 
-((("Bitcoin Core", "alternatives to", id="BCalt03")))((("clients, libraries, and toolkits", id="clients03")))((("libraries, clients, and toolkits", id="librar03")))((("toolkits, libraries, and clients", id="toolkit03")))((("third-party API clients", id="thirdpart03")))There are many alternative clients, libraries, toolkits, and even full-node implementations in the bitcoin ecosystem. These are implemented in a variety of programming languages, offering programmers native interfaces in their preferred language.
+((("Sumcoin Core", "alternatives to", id="BCalt03")))((("clients, libraries, and toolkits", id="clients03")))((("libraries, clients, and toolkits", id="librar03")))((("toolkits, libraries, and clients", id="toolkit03")))((("third-party API clients", id="thirdpart03")))There are many alternative clients, libraries, toolkits, and even full-node implementations in the bitcoin ecosystem. These are implemented in a variety of programming languages, offering programmers native interfaces in their preferred language.
 
 The following sections list some of the best libraries, clients, and toolkits, organized by programming languages.
 
 ==== C/C++
-https://github.com/bitcoin/bitcoin[Bitcoin Core] :: The reference implementation of bitcoin
+https://github.com/bitcoin/bitcoin[Sumcoin Core] :: The reference implementation of bitcoin
 https://github.com/libbitcoin/libbitcoin[libbitcoin]:: Cross-platform C++ development toolkit, node, and consensus library
 https://github.com/libbitcoin/libbitcoin-explorer[bitcoin explorer]:: Libbitcoin's command-line tool
 https://github.com/jgarzik/picocoin[picocoin]:: A C language lightweight client library for bitcoin by Jeff Garzik
@@ -768,7 +768,7 @@ https://github.com/jgarzik/picocoin[picocoin]:: A C language lightweight client 
 ==== JavaScript
 http://bcoin.io/[bcoin]:: A modular and scalable full-node implementation with API
 https://bitcore.io/[Bitcore] :: Full node, API, and library by Bitpay
-https://github.com/bitcoinjs/bitcoinjs-lib[BitcoinJS] :: A pure JavaScript Bitcoin library for node.js and browsers
+https://github.com/bitcoinjs/bitcoinjs-lib[SumcoinJS] :: A pure JavaScript Sumcoin library for node.js and browsers
 
 ==== Java
 https://bitcoinj.github.io[bitcoinj]:: A Java full-node client library
@@ -786,15 +786,15 @@ https://github.com/vbuterin/pybitcointools[pybitcointools]:: A Python bitcoin li
 https://github.com/sinisterchipmunk/bitcoin-client[bitcoin-client]:: A Ruby library wrapper for the JSON-RPC API
 
 ==== Go
-https://github.com/btcsuite/btcd[btcd]:: A Go language full-node bitcoin client
+https://github.com/sumsuite/sumd[sumd]:: A Go language full-node bitcoin client
 
 ==== Rust
 https://github.com/apoelstra/rust-bitcoin[rust-bitcoin]:: Rust bitcoin library for serialization, parsing, and API calls
 
 ==== C#
-https://github.com/MetacoSA/NBitcoin[NBitcoin]:: Comprehensive bitcoin library for the .NET framework
+https://github.com/MetacoSA/NSumcoin[NSumcoin]:: Comprehensive bitcoin library for the .NET framework
 
 ==== Objective-C
-https://github.com/oleganza/CoreBitcoin[CoreBitcoin]:: Bitcoin toolkit for ObjC and Swift
+https://github.com/oleganza/CoreSumcoin[CoreSumcoin]:: Sumcoin toolkit for ObjC and Swift
 
 Many more libraries exist in a variety of other programming languages and more are created all the time.((("", startref="BCalt03")))((("", startref="clients03")))((("", startref="thirdpart03")))((("", startref="toolkit03")))((("", startref="librar03")))

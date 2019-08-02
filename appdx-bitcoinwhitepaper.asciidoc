@@ -1,17 +1,17 @@
-[[satoshi_whitepaper]]
+[[sumtoshi_whitepaper]]
 [appendix]
-== The Bitcoin Whitepaper by Satoshi Nakamoto
+== The Sumcoin Whitepaper by Satoshi Nakamoto
 
 [NOTE]
 ====
 ((("whitepaper", id="whitethirteen")))((("bitcoin whitepaper", id="BCwhitethirteen")))((("Nakamoto, Satoshi", id="nakamatothirteen")))This is the original whitepaper, reproduced in its entirety exactly as it was published by Satoshi Nakamoto in October 2008.
 ====
 
-=== Bitcoin - A Peer-to-Peer Electronic Cash System
+=== Sumcoin - A Peer-to-Peer Electronic Cash System
 
 Satoshi Nakamoto
 
-_satoshin@gmx.com_
+_sumtoshin@gmx.com_
 
 pass:[<a href="https://bitcoin.org/en/" class="orm:hideurl"><em>www.bitcoin.org</em></a>]
 

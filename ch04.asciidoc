@@ -19,7 +19,7 @@ First, we will introduce cryptography and explain the mathematics used in bitcoi
 
 ((("keys and addresses", "overview of", "public key cryptography")))((("digital currencies", "cryptocurrency")))Public key cryptography was invented in the 1970s and is a mathematical foundation for computer and information security.
 
-Since the invention of public key cryptography, several suitable mathematical functions, such as prime number exponentiation and elliptic curve multiplication, have been discovered. These mathematical functions are practically irreversible, meaning that they are easy to calculate in one direction and infeasible to calculate in the opposite direction. Based on these mathematical functions, cryptography enables the creation of digital secrets and unforgeable digital signatures. Bitcoin uses elliptic curve multiplication as the basis for its cryptography.
+Since the invention of public key cryptography, several suitable mathematical functions, such as prime number exponentiation and elliptic curve multiplication, have been discovered. These mathematical functions are practically irreversible, meaning that they are easy to calculate in one direction and infeasible to calculate in the opposite direction. Based on these mathematical functions, cryptography enables the creation of digital secrets and unforgeable digital signatures. Sumcoin uses elliptic curve multiplication as the basis for its cryptography.
 
 In bitcoin, we use public key cryptography to create a key pair that controls access to bitcoin. The key pair consists of a private key and--derived from it--a unique public key. The public key is used to receive funds, and the private key is used to sign transactions to spend the funds.
 
@@ -58,7 +58,7 @@ The bitcoin private key is just a number. You can pick your private keys randoml
 
 ===== Generating a private key from a random number
 
-The first and most important step in generating keys is to find a secure source of entropy, or randomness. Creating a bitcoin key is essentially the same as "Pick a number between 1 and 2^256^." The exact method you use to pick that number does not matter as long as it is not predictable or repeatable. Bitcoin software uses the underlying operating system's random number generators to produce 256 bits of entropy (randomness). Usually, the OS random number generator is initialized by a human source of randomness, which is why you may be asked to wiggle your mouse around for a few seconds.
+The first and most important step in generating keys is to find a secure source of entropy, or randomness. Creating a bitcoin key is essentially the same as "Pick a number between 1 and 2^256^." The exact method you use to pick that number does not matter as long as it is not predictable or repeatable. Sumcoin software uses the underlying operating system's random number generators to produce 256 bits of entropy (randomness). Usually, the OS random number generator is initialized by a human source of randomness, which is why you may be asked to wiggle your mouse around for a few seconds.
 
 More precisely, the private key can be any number between +0+ and +n - 1+ inclusive, where n is a constant (n = 1.1578 * 10^77^, slightly less than 2^256^) defined as the order of the elliptic curve used in bitcoin (see <<elliptic_curve>>). To create such a key, we randomly pick a 256-bit number and check that it is less than +n+. In programming terms, this is usually achieved by feeding a larger string of random bits, collected from a cryptographically secure source of randomness, into the SHA256 hash algorithm, which will conveniently produce a 256-bit number. If the result is less than +n+, we have a suitable private key. Otherwise, we simply try again with another random number.
 
@@ -79,7 +79,7 @@ The following is a randomly generated private key (k) shown in hexadecimal forma
 The size of bitcoin's private key space, (2^256^) is an unfathomably large number. It is approximately 10^77^ in decimal. For comparison, the visible universe is estimated to contain 10^80^ atoms.
 ====
 
-((("dumpprivkey command")))To generate a new key with the Bitcoin Core client (see <<ch03_bitcoin_client>>), use the +getnewaddress+ command. For security reasons it displays the public key only, not the private key. To ask +bitcoind+ to expose the private key, use the +dumpprivkey+ command. The +dumpprivkey+ command shows the private key in a Base58 checksum-encoded format called the _Wallet Import Format_ (WIF), which we will examine in more detail in <<priv_formats>>. Here's an example of generating and displaying a private key using these two commands:
+((("dumpprivkey command")))To generate a new key with the Sumcoin Core client (see <<ch03_bitcoin_client>>), use the +getnewaddress+ command. For security reasons it displays the public key only, not the private key. To ask +bitcoind+ to expose the private key, use the +dumpprivkey+ command. The +dumpprivkey+ command shows the private key in a Base58 checksum-encoded format called the _Wallet Import Format_ (WIF), which we will examine in more detail in <<priv_formats>>. Here's an example of generating and displaying a private key using these two commands:
 
 ----
 $ bitcoin-cli getnewaddress
@@ -96,7 +96,7 @@ The +dumpprivkey+ command does not generate a private key from a public key, as 
 =====================================================================
 
 [role="pagebreak-before"]
-You can also use the Bitcoin Explorer command-line tool (see <<appdx_bx>>) to generate and display private keys with the commands +seed+, +ec-new+, and +ec-to-wif+:
+You can also use the Sumcoin Explorer command-line tool (see <<appdx_bx>>) to generate and display private keys with the commands +seed+, +ec-new+, and +ec-to-wif+:
 
 ----
 $ bx seed | bx ec-new | bx ec-to-wif
@@ -125,7 +125,7 @@ Elliptic curve multiplication is a type of function that cryptographers call a "
 .An elliptic curve
 image::images/mbc2_0402.png["ecc-curve"]
 
-Bitcoin uses a specific elliptic curve and set of mathematical constants, as defined in a standard called +secp256k1+, established by the National Institute of Standards and Technology (NIST). The +secp256k1+ curve is defined by the following function, which produces an elliptic curve:
+Sumcoin uses a specific elliptic curve and set of mathematical constants, as defined in a standard called +secp256k1+, established by the National Institute of Standards and Technology (NIST). The +secp256k1+ curve is defined by the following function, which produces an elliptic curve:
 
 [latexmath]
 ++++
@@ -243,7 +243,7 @@ To visualize multiplication of a point with an integer, we will use the simpler 
 .Elliptic curve cryptography: visualizing the multiplication of a point G by an integer k on an elliptic curve
 image::images/mbc2_0404.png["ecc_illustrated"]
 
-=== Bitcoin Addresses
+=== Sumcoin Addresses
 
 ((("keys and addresses", "bitcoin addresses", id="KAaddress04")))A bitcoin address is a string of digits and characters that can be shared with anyone who wants to send you money. Addresses produced from public keys consist of a string of numbers and letters, beginning with the digit "1." Here's an example of a bitcoin address:
 
@@ -252,7 +252,7 @@ image::images/mbc2_0404.png["ecc_illustrated"]
 ----
 
 
-The bitcoin address is what appears most commonly in a transaction as the "recipient" of the funds. If we compare a bitcoin transaction to a paper check, the bitcoin address is the beneficiary, which is what we write on the line after "Pay to the order of." On a paper check, that beneficiary can sometimes be the name of a bank account holder, but can also include corporations, institutions, or even cash. Because paper checks do not need to specify an account, but rather use an abstract name as the recipient of funds, they are very flexible payment instruments. Bitcoin transactions use a similar abstraction, the bitcoin address, to make them very flexible. A bitcoin address can represent the owner of a private/public key pair, or it can represent something else, such as a payment script, as we will see in <<p2sh>>. For now, let's examine the simple case, a bitcoin address that represents, and is derived from, a public key.
+The bitcoin address is what appears most commonly in a transaction as the "recipient" of the funds. If we compare a bitcoin transaction to a paper check, the bitcoin address is the beneficiary, which is what we write on the line after "Pay to the order of." On a paper check, that beneficiary can sometimes be the name of a bank account holder, but can also include corporations, institutions, or even cash. Because paper checks do not need to specify an account, but rather use an abstract name as the recipient of funds, they are very flexible payment instruments. Sumcoin transactions use a similar abstraction, the bitcoin address, to make them very flexible. A bitcoin address can represent the owner of a private/public key pair, or it can represent something else, such as a payment script, as we will see in <<p2sh>>. For now, let's examine the simple case, a bitcoin address that represents, and is derived from, a public key.
 
 ((("addresses", "algorithms used to create")))The bitcoin address is derived from the public key through the use of one-way cryptographic hashing. A "hashing algorithm" or simply "hash algorithm" is a one-way function that produces a fingerprint or "hash" of an arbitrary-sized input. Cryptographic hash functions are used extensively in bitcoin: in bitcoin addresses, in script addresses, and in the mining Proof-of-Work algorithm. The algorithms used to make a bitcoin address from a public key are the Secure Hash Algorithm (SHA) and the RACE Integrity Primitives Evaluation Message Digest (RIPEMD), specifically SHA256 and RIPEMD160.
 
@@ -270,10 +270,10 @@ where _K_ is the public key and _A_ is the resulting bitcoin address.
 
 [TIP]
 ====
-A bitcoin address is _not_ the same as a public key. Bitcoin addresses are derived from a public key using a one-way function.
+A bitcoin address is _not_ the same as a public key. Sumcoin addresses are derived from a public key using a one-way function.
 ====
 
-Bitcoin addresses are almost always encoded as "Base58Check" (see <<base58>>), which uses 58 characters (a Base58 number system) and a checksum to help human readability, avoid ambiguity, and protect against errors in address transcription and entry. Base58Check is also used in many other ways in bitcoin, whenever there is a need for a user to read and correctly transcribe a number, such as a bitcoin address, a private key, an encrypted key, or a script hash. In the next section we will examine the mechanics of Base58Check encoding and decoding and the resulting representations. <<pubkey_to_address>> illustrates the conversion of a public key into a bitcoin address.
+Sumcoin addresses are almost always encoded as "Base58Check" (see <<base58>>), which uses 58 characters (a Base58 number system) and a checksum to help human readability, avoid ambiguity, and protect against errors in address transcription and entry. Base58Check is also used in many other ways in bitcoin, whenever there is a need for a user to read and correctly transcribe a number, such as a bitcoin address, a private key, an encrypted key, or a script hash. In the next section we will examine the mechanics of Base58Check encoding and decoding and the resulting representations. <<pubkey_to_address>> illustrates the conversion of a public key into a bitcoin address.
 
 [[pubkey_to_address]]
 .Public key to bitcoin address: conversion of a public key into a bitcoin address
@@ -285,7 +285,7 @@ image::images/mbc2_0405.png["pubkey_to_address"]
 ((("keys and addresses", "bitcoin addresses", "Base58 and Base58check encoding")))((("Base58 and Base58check encoding", id="base5804")))((("addresses", "Base58 and Base58check encoding", id="Abase5804")))In order to represent long numbers in a compact way, using fewer symbols, many computer systems use mixed-alphanumeric representations with a base (or radix) higher than 10. For example, whereas the traditional decimal system uses the 10 numerals 0 through 9, the hexadecimal system uses 16, with the letters A through F as the six additional symbols. A number represented in hexadecimal format is shorter than the equivalent decimal representation. Even more compact, Base64 representation uses 26 lowercase letters, 26 capital letters, 10 numerals, and 2 more characters such as &#x201c;`+`&#x201d; and "/" to transmit binary data over text-based media such as email. Base64 is most commonly used to add binary attachments to email. Base58 is a text-based binary-encoding format developed for use in bitcoin and used in many other cryptocurrencies. It offers a balance between compact representation, readability, and error detection and prevention. Base58 is a subset of Base64, using upper- and lowercase letters and numbers, but omitting some characters that are frequently mistaken for one another and can appear identical when displayed in certain fonts. Specifically, Base58 is Base64 without the 0 (number zero), O (capital o), l (lower L), I (capital i), and the symbols &#x201c;`+`&#x201d; and "/". Or, more simply, it is a set of lowercase and capital letters and numbers without the four (0, O, l, I) just mentioned. <<base58alphabet>> shows the full Base58 alphabet.
 
 [[base58alphabet]]
-.Bitcoin's Base58 alphabet
+.Sumcoin's Base58 alphabet
 ====
 ----
 123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
@@ -318,9 +318,9 @@ In bitcoin, most of the data presented to the user is Base58Check-encoded to mak
 [options="header"]
 |=======
 |Type| Version prefix (hex)| Base58 result prefix
-| Bitcoin Address | 0x00 | 1
+| Sumcoin Address | 0x00 | 1
 | Pay-to-Script-Hash Address | 0x05 | 3
-| Bitcoin Testnet Address | 0x6F | m or n
+| Sumcoin Testnet Address | 0x6F | m or n
 | Private Key WIF |  0x80 | 5, K, or L
 | BIP-38 Encrypted Private Key | 0x0142 | 6P
 | BIP-32 Extended Public Key | 0x0488B21E | xpub
@@ -360,7 +360,7 @@ In bitcoin, most of the data presented to the user is Base58Check-encoded to mak
 
 All of these representations are different ways of showing the same number, the same private key. They look different, but any one format can easily be converted to any other format. Note that the "raw binary" is not shown in <<table_4-3>> as any encoding for display here would, by definition, not be raw binary data.
 
-We use the +wif-to-ec+ command from Bitcoin Explorer (see <<appdx_bx>>) to show that both WIF keys represent the same private key:
+We use the +wif-to-ec+ command from Sumcoin Explorer (see <<appdx_bx>>) to show that both WIF keys represent the same private key:
 
 ----
 $ bx wif-to-ec 5J3mBbAH58CpQ3Y5RNJpUKPE62SQ5tfcvU2JpbnkeyhfsYB1Jcn
@@ -372,7 +372,7 @@ $ bx wif-to-ec KxFC1jmwwCoACiCAWZ3eXa96mBM6tb3TYzGmf6YwgdGWZgawvrtJ
 
 ===== Decode from Base58Check
 
-The Bitcoin Explorer commands (see <<appdx_bx>>) make it easy to write shell scripts and command-line "pipes" that manipulate bitcoin keys, addresses, and transactions. You can use Bitcoin Explorer to decode the Base58Check format on the command line.
+The Sumcoin Explorer commands (see <<appdx_bx>>) make it easy to write shell scripts and command-line "pipes" that manipulate bitcoin keys, addresses, and transactions. You can use Sumcoin Explorer to decode the Base58Check format on the command line.
 
 We use the +base58check-decode+ command to decode the uncompressed key:
 
@@ -402,7 +402,7 @@ wrapper
 
 ===== Encode from hex to Base58Check
 
-To encode into Base58Check (the opposite of the previous command), we use the +base58check-encode+ command from Bitcoin Explorer (see <<appdx_bx>>) and provide the hex private key, followed by the WIF version prefix 128:
+To encode into Base58Check (the opposite of the previous command), we use the +base58check-encode+ command from Sumcoin Explorer (see <<appdx_bx>>) and provide the hex private key, followed by the WIF version prefix 128:
 
 ----
 bx base58check-encode 1e99423a4ed27608a15a2616a2b0e9e52ced330ac530edcc32c8ffc6a526aedd --version 128
@@ -572,9 +572,9 @@ Public Key (hex) is:
 243bcefdd4347074d44bd7356d6a53c495737dd96295e2a9374bf5f02ebfc176
 Compressed Public Key (hex) is:
  025c0de3b9c8ab18dd04e3511243ec2952002dbfadc864b9628910169d9b9b00ec
-Bitcoin Address (b58check) is:
+Sumcoin Address (b58check) is:
  1thMirt546nngXqyPEz532S8fLwbozud8
-Compressed Bitcoin Address (b58check) is:
+Compressed Sumcoin Address (b58check) is:
  14cxpo3MBCYYWCgF74SWTdcmxipnGUsPw3
 </pre>
 ++++
@@ -611,7 +611,7 @@ $ # Run the script
 $ python ec-math.py
 Secret:  38090835015954358862481132628887443905906204995912378278060168703580660294000
 EC point: (70048853531867179489857750497606966272382583471322935454624595540007269312627, 105262206478686743191060800263479589329920209527285803935736021686045542353380)
-BTC public key: 029ade3effb0a67d5c8609850d797366af428f4a0d5194cb221d807770a1522873
+SUM public key: 029ade3effb0a67d5c8609850d797366af428f4a0d5194cb221d807770a1522873
 ----
 ====
 
@@ -645,7 +645,7 @@ Test the encrypted keys in <<table_4-10>> using bitaddress.org to see how you ca
 
 ((("keys and addresses", "advanced forms", "pay-to-script hash and multisig addresses")))((("Pay-to-Script-Hash (P2SH)", "multisig addresses and")))((("multisig addresses")))((("addresses", "multisig addresses")))As we know, traditional bitcoin addresses begin with the number “1” and are derived from the public key, which is derived from the private key.  Although anyone can send bitcoin to a “1” address, that bitcoin can only be spent by presenting the corresponding private key signature and public key hash.
 
-((("bitcoin improvement proposals", "Pay to Script Hash (BIP-16)")))Bitcoin addresses that begin with the number “3” are pay-to-script hash (P2SH) addresses, sometimes erroneously called multisignature or multisig addresses. They designate the beneficiary of a bitcoin transaction as the hash of a script, instead of the owner of a public key. The feature was introduced in January 2012 with BIP-16 (see <<appdxbitcoinimpproposals>>), and is being widely adopted because it provides the opportunity to add functionality to the address itself. Unlike transactions that "send" funds to traditional “1” bitcoin addresses, also known as a pay-to-public-key-hash (P2PKH), funds sent to “3” addresses require something more than the presentation of one public key hash and one private key signature as proof of ownership. The requirements are designated at the time the address is created, within the script, and all inputs to this address will be encumbered with the same requirements.
+((("bitcoin improvement proposals", "Pay to Script Hash (BIP-16)")))Sumcoin addresses that begin with the number “3” are pay-to-script hash (P2SH) addresses, sometimes erroneously called multisignature or multisig addresses. They designate the beneficiary of a bitcoin transaction as the hash of a script, instead of the owner of a public key. The feature was introduced in January 2012 with BIP-16 (see <<appdxbitcoinimpproposals>>), and is being widely adopted because it provides the opportunity to add functionality to the address itself. Unlike transactions that "send" funds to traditional “1” bitcoin addresses, also known as a pay-to-public-key-hash (P2PKH), funds sent to “3” addresses require something more than the presentation of one public key hash and one private key signature as proof of ownership. The requirements are designated at the time the address is created, within the script, and all inputs to this address will be encumbered with the same requirements.
 
 A P2SH address is created from a transaction script, which defines who can spend a transaction output (for more details, see <<p2sh>>). Encoding a P2SH address involves using the same double-hash function as used during creation of a bitcoin address, only applied on the script instead of the public key:
 
@@ -653,7 +653,7 @@ A P2SH address is created from a transaction script, which defines who can spend
 script hash = RIPEMD160(SHA256(script))
 ----
 
-The resulting "script hash" is encoded with Base58Check with a version prefix of 5, which results in an encoded address starting with a +3+. An example of a P2SH address is +3F6i6kwkevjR7AsAd4te2YB2zZyASEm1HM+, which can be derived using the Bitcoin Explorer commands +script-encode+, +sha256+, +ripemd160+, and +base58check-encode+ (see <<appdx_bx>>) as follows:
+The resulting "script hash" is encoded with Base58Check with a version prefix of 5, which results in an encoded address starting with a +3+. An example of a P2SH address is +3F6i6kwkevjR7AsAd4te2YB2zZyASEm1HM+, which can be derived using the Sumcoin Explorer commands +script-encode+, +sha256+, +ripemd160+, and +base58check-encode+ (see <<appdx_bx>>) as follows:
 
 ----
 $ echo \

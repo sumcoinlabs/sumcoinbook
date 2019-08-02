@@ -1,4 +1,4 @@
-Title: Mastering Bitcoin
+Title: Mastering Sumcoin
 ISBN: 9781491954386
 JIRA #: DCPSPROD-1380
 

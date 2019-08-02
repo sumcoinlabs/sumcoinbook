@@ -1,8 +1,8 @@
 [[appdxbitcoinimpproposals]]
 [appendix]
-== Bitcoin Improvement Proposals
+== Sumcoin Improvement Proposals
 
-((("bitcoin improvement proposals", "types of")))Bitcoin Improvement Proposals are design documents providing information to the bitcoin community, or for describing a new feature for bitcoin or its processes or environment.
+((("bitcoin improvement proposals", "types of")))Sumcoin Improvement Proposals are design documents providing information to the bitcoin community, or for describing a new feature for bitcoin or its processes or environment.
 
 As per BIP-01 _BIP Purpose and Guidelines_, there are three kinds of BIPs:
 
@@ -47,7 +47,7 @@ _Process_ BIP:: Describes a bitcoin process, or proposes a change to (or an even
 |[[bip-39]]https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki[BIP-39] |Mnemonic code for generating deterministic keys |Marek Palatinus, Pavol Rusnak, Aaron Voisine, Sean Bowe |Standard |Proposed
 |[[bip-40]]https://github.com/bitcoin/bips/blob/master/bip-0040.mediawiki[BIP-40] |Stratum wire protocol |Marek Palatinus |Standard |BIP number allocated
 |[[bip-41]]https://github.com/bitcoin/bips/blob/master/bip-0041.mediawiki[BIP-41] |Stratum mining protocol |Marek Palatinus |Standard |BIP number allocated
-|[[bip-42]]https://github.com/bitcoin/bips/blob/master/bip-0042.mediawiki[BIP-42] |A finite monetary supply for Bitcoin |Pieter Wuille |Standard |Draft
+|[[bip-42]]https://github.com/bitcoin/bips/blob/master/bip-0042.mediawiki[BIP-42] |A finite monetary supply for Sumcoin |Pieter Wuille |Standard |Draft
 |[[bip-43]]https://github.com/bitcoin/bips/blob/master/bip-0043.mediawiki[BIP-43] |Purpose Field for Deterministic Wallets |Marek Palatinus, Pavol Rusnak |Informational |Draft
 |[[bip-44]]https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki[BIP-44] |Multi-Account Hierarchy for Deterministic Wallets |Marek Palatinus, Pavol Rusnak |Standard |Proposed
 |[[bip-45]]https://github.com/bitcoin/bips/blob/master/bip-0045.mediawiki[BIP-45] |Structure for Deterministic P2SH Multisignature Wallets |Manuel Araoz, Ryan X. Charles, Matias Alejo Garcia |Standard |Proposed
@@ -62,7 +62,7 @@ _Process_ BIP:: Describes a bitcoin process, or proposes a change to (or an even
 |[[bip-65]]https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki[BIP-65] |OP_CHECKLOCKTIMEVERIFY |Peter Todd |Standard |Final
 |[[bip-66]]https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki[BIP-66] |Strict DER signatures |Pieter Wuille |Standard |Final
 |[[bip-67]]https://github.com/bitcoin/bips/blob/master/bip-0067.mediawiki[BIP-67] |Deterministic Pay-to-script-hash multi-signature addresses through public key sorting |Thomas Kerin, Jean-Pierre Rupp, Ruben de Vries |Standard |Proposed
-|[[bip-68]]https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki[BIP-68] |Relative lock-time using consensus-enforced sequence numbers |Mark Friedenbach, BtcDrak, Nicolas Dorier, kinoshitajona |Standard |Final
+|[[bip-68]]https://github.com/bitcoin/bips/blob/master/bip-0068.mediawiki[BIP-68] |Relative lock-time using consensus-enforced sequence numbers |Mark Friedenbach, SumDrak, Nicolas Dorier, kinoshitajona |Standard |Final
 |[[bip-69]]https://github.com/bitcoin/bips/blob/master/bip-0069.mediawiki[BIP-69] |Lexicographical Indexing of Transaction Inputs and Outputs |Kristov Atlas |Informational |Proposed
 |[[bip-70]]https://github.com/bitcoin/bips/blob/master/bip-0070.mediawiki[BIP-70] |Payment Protocol |Gavin Andresen, Mike Hearn |Standard |Final
 |[[bip-71]]https://github.com/bitcoin/bips/blob/master/bip-0071.mediawiki[BIP-71] |Payment Protocol MIME types |Gavin Andresen |Standard |Final
@@ -79,12 +79,12 @@ _Process_ BIP:: Describes a bitcoin process, or proposes a change to (or an even
 |[[bip-102]]https://github.com/bitcoin/bips/blob/master/bip-0102.mediawiki[BIP-102] |Block size increase to 2MB |Jeff Garzik |Standard |Draft
 |[[bip-103]]https://github.com/bitcoin/bips/blob/master/bip-0103.mediawiki[BIP-103] |Block size following technological growth |Pieter Wuille |Standard |Draft
 |[[bip-104]]https://github.com/bitcoin/bips/blob/master/bip-0104.mediawiki[BIP-104] |'Block75' - Max block size like difficulty |t.khan |Standard |Draft
-|[[bip-105]]https://github.com/bitcoin/bips/blob/master/bip-0105.mediawiki[BIP-105] |Consensus based block size retargeting algorithm |BtcDrak |Standard |Draft
-|[[bip-106]]https://github.com/bitcoin/bips/blob/master/bip-0106.mediawiki[BIP-106] |Dynamically Controlled Bitcoin Block Size Max Cap |Upal Chakraborty |Standard |Draft
+|[[bip-105]]https://github.com/bitcoin/bips/blob/master/bip-0105.mediawiki[BIP-105] |Consensus based block size retargeting algorithm |SumDrak |Standard |Draft
+|[[bip-106]]https://github.com/bitcoin/bips/blob/master/bip-0106.mediawiki[BIP-106] |Dynamically Controlled Sumcoin Block Size Max Cap |Upal Chakraborty |Standard |Draft
 |[[bip-107]]https://github.com/bitcoin/bips/blob/master/bip-0107.mediawiki[BIP-107] |Dynamic limit on the block size |Washington Y. Sanchez |Standard |Draft
 |[[bip-109]]https://github.com/bitcoin/bips/blob/master/bip-0109.mediawiki[BIP-109] |Two million byte size limit with sigop and sighash limits |Gavin Andresen |Standard |Rejected
 |[[bip-111]]https://github.com/bitcoin/bips/blob/master/bip-0111.mediawiki[BIP-111] |NODE_BLOOM service bit |Matt Corallo, Peter Todd |Standard |Proposed
-|[[bip-112]]https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki[BIP-112] |CHECKSEQUENCEVERIFY |BtcDrak, Mark Friedenbach, Eric Lombrozo |Standard |Final
+|[[bip-112]]https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki[BIP-112] |CHECKSEQUENCEVERIFY |SumDrak, Mark Friedenbach, Eric Lombrozo |Standard |Final
 |[[bip-113]]https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki[BIP-113] |Median time-past as endpoint for lock-time calculations |Thomas Kerin, Mark Friedenbach |Standard |Final
 |[[bip-114]]https://github.com/bitcoin/bips/blob/master/bip-0114.mediawiki[BIP-114] |Merkelized Abstract Syntax Tree |Johnson Lau |Standard |Draft
 |[[bip-120]]https://github.com/bitcoin/bips/blob/master/bip-0120.mediawiki[BIP-120] |Proof of Payment |Kalle Rosenbaum |Standard |Draft

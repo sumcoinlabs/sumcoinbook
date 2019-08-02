@@ -1,6 +1,6 @@
 from bitcoin.rpc import RawProxy
 
-# Create a connection to local Bitcoin Core node
+# Create a connection to local Sumcoin Core node
 p = RawProxy()
 
 # Run the getblockchaininfo command, store the resulting data in info
